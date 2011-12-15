@@ -1,0 +1,8 @@
+!define TEST_SYSTEM {slim}
+!define TEST_RUNNER {decaf}
+!define COMMAND_PATTERN {coffee %m}
+
+!path \..
+
+|script|
+|reject|

@@ -1,2 +1,5 @@
-.idea
-node_modules
+/.idea
+/node_modules
+/slim/FitNesseRoot/ErrorLogs
+/slim/FitNesseRoot/RecentChanges
+/slim/FitNesseRoot/files/testResults

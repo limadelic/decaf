@@ -1,7 +1,6 @@
+port = process.argv[2]
 app = require('express').createServer()
 io = require('socket.io').listen(app)
-
-port =  process.argv[2]
 
 console.log "
 =============================\n
