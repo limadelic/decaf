@@ -9,9 +9,15 @@ slim -- v0.3                 \n
 =============================\n
 "
 
-app = require('express').createServer()
-io = require('socket.io').listen(app)
+log = (msg) -> writeFile 'log.txt', msg
 
-app.listen port
+log "i'm here on #{port}"
 
-io.on 'connection', -> console.log 'yay!!'
+require('zappa') port, ->
+
+  log 'yeah got a server'
+
+  @on connection: ->
+    log 'im here now'
+    #@emit 'Slim -- v0.3'
+    #log @data

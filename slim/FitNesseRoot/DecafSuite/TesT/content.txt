@@ -1,6 +1,5 @@
 !define TEST_SYSTEM {slim}
-!define TEST_RUNNER {decaf}
-!define COMMAND_PATTERN {coffee.cmd %m}
+!define COMMAND_PATTERN {coffee.cmd decaf}
 
 |script|
 |reject|

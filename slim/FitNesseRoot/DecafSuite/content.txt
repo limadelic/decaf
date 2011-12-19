@@ -1,5 +1,1 @@
-!define TEST_SYSTEM {slim}
-!define TEST_RUNNER {..\decaf}
-!define COMMAND_PATTERN {cmd %m %p}
-
 !contents -R2 -g -p -f -h
