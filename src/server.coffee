@@ -1,23 +1,20 @@
 port = process.argv[2]
+net = require 'net'
 
-{ writeFile } = require 'fs'
+server = net.createServer (socket) =>
 
-writeFile 'out.txt', "
-=============================\n
-decaf running on port:#{port}\n
-slim -- v0.3                 \n
-=============================\n
-"
+  socket.write 'hello\n'
 
-log = (msg) -> writeFile 'log.txt', msg
+  exit = ->
+    socket.write 'bye'
+    socket.end()
+    server.close()
 
-log "i'm here on #{port}"
+  is_bye = (data) -> data.slice(0,3).toString() is 'bye'
 
-require('zappa') port, ->
+  socket.on 'data', (data) ->
+    return exit() if is_bye data
+    console.log "#{data}"
 
-  log 'yeah got a server'
 
-  @on connection: ->
-    log 'im here now'
-    #@emit 'Slim -- v0.3'
-    #log @data
+server.listen port
