@@ -1,5 +1,6 @@
 !define TEST_SYSTEM {slim}
 !define COMMAND_PATTERN {coffee.cmd decaf}
 
-|script|
-|reject|
+|import|
+|figaro|
+

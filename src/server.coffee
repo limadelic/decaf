@@ -3,15 +3,17 @@ net = require 'net'
 { writeFile } = require 'fs'
 
 _log = ''
-log = (msg) -> writeFile 'log.txt', _log += msg
+log = (msg) ->
+  _log += "#{msg}\n"
+  console.log _log
+  writeFile 'log.txt', _log
 
-server = net.createServer (socket) =>
+server = net.createServer (socket) ->
 
   log "started on #{port}"
-  socket.write 'Slim -- V0.3'
+  socket.write 'Slim -- V0.3\n'
 
   exit = ->
-    write_log()
     socket.end()
     server.close()
 
