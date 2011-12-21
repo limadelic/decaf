@@ -2,25 +2,22 @@ port = process.argv[2]
 net = require 'net'
 { writeFile } = require 'fs'
 
-_log = ''
-log = (msg) ->
-  _log += "#{msg}\n"
-  console.log _log
-  writeFile 'log.txt', _log
-
 server = net.createServer (socket) ->
 
-  log "started on #{port}"
+  console.log "started on #{port}"
   socket.write 'Slim -- V0.3\n'
 
   exit = ->
     socket.end()
     server.close()
 
-  is_bye = (data) -> data.slice(0,3).toString() is 'bye'
+  is_bye = (data) -> data.slice(6,3).toString() is 'bye'
 
   socket.on 'data', (data) ->
-    log data.toString()
+    data = data.toString()
+    console.log data
     return exit() if is_bye data
+    socket.write '[000002:000010:import_0_0:000002:OK:]'
+    socket.write '[000001:000037:[000002:000010:import_0_0:000002:OK:]:]'
 
 server.listen port
