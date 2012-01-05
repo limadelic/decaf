@@ -1,7 +1,3 @@
-!define TEST_SYSTEM {slim}
-!define SLIM_PORT {8888}
-!define COMMAND_PATTERN {coffee.cmd decaf}
-
 |import|
 |figaro|
 

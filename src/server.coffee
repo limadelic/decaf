@@ -7,18 +7,16 @@ net = require 'net'
 
 server = net.createServer (stream) ->
 
-  stream.setEncoding 'utf8'
   stream.write 'Slim -- V0.3\n'
 
-  stream.on 'data', (message) ->
-    if message is bye then do exit else process message
+  stream.on 'data', (data) ->
+    if data.toString() is bye then do exit else process data
 
-  process = (message) -> stream.write stuff
+  process = (data) -> stream.write stuff
 
   exit = ->
-    stream.end()
+    stream.destroy()
     server.close()
-    console.log "i'm rich"
 
 server.listen port
 
