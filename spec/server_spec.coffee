@@ -33,6 +33,12 @@ describe 'decaf server', ->
 
     verify exit.called
 
+  it 'should process slim commands', ->
 
+    process = stub sut, 'process'
+
+    sut.message 'slim command'
+
+    verify process.calledWith 'slim command'
 
 
