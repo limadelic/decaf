@@ -1,6 +1,7 @@
-{ mock, stub } = require 'sinon'
-exports.mock = mock
-exports.stub = stub
+sinon = require 'sinon'
+exports.mock = sinon.mock
+exports.stub = sinon.stub
+exports.spy = sinon.spy
 
 exports.should = require 'should'
 

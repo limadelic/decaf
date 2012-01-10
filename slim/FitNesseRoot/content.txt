@@ -1,2 +1,4 @@
 !define TEST_SYSTEM {slim}
 !define COMMAND_PATTERN {coffee.cmd decaf}
+
+!contents -R2 -g -p -f -h

@@ -1,22 +1,24 @@
-stuff = '000054:[000001:000037:[000002:000010:import_0_0:000002:OK:]:]'
-bye = '000003:bye'
-
 net = require 'net'
 
 class exports.Server
 
   start: (port) ->
+    @server = net.createServer @listener
+    @server.listen port
 
-    server = net.createServer (stream) ->
-      stream.write 'Slim -- V0.3\n'
+  listener: (socket) =>
 
-      stream.on 'data', (data) ->
-        if data.toString() is bye then do exit else process data
+    socket.write hello
 
-      process = (data) -> stream.write stuff
+    socket.on 'data', (data) ->
+      if data.toString() is bye then do exit else process data
 
-      exit = ->
-        stream.destroy()
-        server.close()
+    process = (data) -> socket.write stuff
 
-    server.listen port
+    exit = =>
+      socket.destroy()
+      @server.close()
+
+  hello = 'Slim -- V0.3\n'
+  bye = '000003:bye'
+  stuff = '000054:[000001:000037:[000002:000010:import_0_0:000002:OK:]:]'
