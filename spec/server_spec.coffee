@@ -4,18 +4,16 @@ net = require 'net'
 
 describe 'decaf server', ->
 
-  start = (port) -> new Server().start port
+  sut = new Server()
 
   it 'should listen on given port', ->
 
     server = stub listen: ->
     stub(net, 'createServer').returns server
 
-    start 8080
+    sut.start 8080
 
     verify server.listen.calledWith 8080
-
-  listen = (socket) -> new Server().listener socket
 
   it 'should greet slim with the supported version', ->
 
@@ -23,9 +21,18 @@ describe 'decaf server', ->
       write: ->
       on: ->
 
-    listen socket
+    sut.listen socket
 
-    verify socket.write.calledWith 'Slim -- V0.3\n'
+    verify socket.write.calledWith sut.hello
+
+  it 'should exit when slim says bye', ->
+
+    exit = stub sut, 'exit'
+
+    sut.message sut.bye
+
+    verify exit.called
+
 
 
 
