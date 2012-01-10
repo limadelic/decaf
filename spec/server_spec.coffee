@@ -1,5 +1,5 @@
 net = require 'net'
-{ spy, stub, mock, verify } = require './common'
+{ stub, verify } = require './common'
 { Server } = require '../src/server'
 
 describe 'decaf server', ->
