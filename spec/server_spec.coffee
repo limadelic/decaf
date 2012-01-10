@@ -39,6 +39,6 @@ describe 'decaf server', ->
 
     sut.message 'slim command'
 
-    verify process.calledWith 'slim command'
+    verify process.called
 
 

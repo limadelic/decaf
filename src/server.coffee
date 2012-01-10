@@ -11,9 +11,11 @@ class exports.Server
     @socket.on 'data', @message
 
   message: (data) =>
-    if data.toString() is @bye then do @exit else @process data
+    @data = data.toString()
+    if @data is @bye then @exit() else @process()
 
-  process: (data) -> @socket.write @stuff
+  process: ->
+    @socket.write @stuff
 
   exit: ->
     @socket.destroy()
