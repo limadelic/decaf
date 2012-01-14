@@ -35,10 +35,10 @@ describe 'decaf server', ->
 
   it 'should process slim commands', ->
 
-    process = stub sut, 'process'
+    sut.processor = stub run: (command) ->
 
     sut.message 'slim command'
 
-    verify process.called
+    verify sut.processor.run.calledWith 'slim command'
 
 

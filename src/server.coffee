@@ -1,4 +1,5 @@
 net = require 'net'
+{ Processor } = require './processor'
 
 class exports.Server
 
@@ -7,15 +8,16 @@ class exports.Server
     @server.listen port
 
   listen: (@socket) =>
+    @processor = new Processor @socket
     @socket.write @hello
     @socket.on 'data', @message
 
   message: (data) =>
-    @data = data.toString()
-    if @data is @bye then @exit() else @process()
+    command = data.toString()
 
-  process: ->
-    @socket.write @stuff
+    if command is @bye
+    then @exit()
+    else @processor.run command
 
   exit: ->
     @socket.destroy()
@@ -23,4 +25,4 @@ class exports.Server
 
   hello: 'Slim -- V0.3\n'
   bye: '000003:bye'
-  stuff: '000054:[000001:000037:[000002:000010:import_0_0:000002:OK:]:]'
+
