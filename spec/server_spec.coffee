@@ -1,5 +1,5 @@
 net = require 'net'
-{ stub, verify } = require './common'
+{ stub, verify } = require './spec_helper'
 { Server } = require '../src/server'
 
 describe 'decaf server', ->
@@ -33,7 +33,7 @@ describe 'decaf server', ->
 
     verify exit.called
 
-  it 'should process slim commands', ->
+  it 'should run slim commands', ->
 
     sut.processor = stub run: (command) ->
 
