@@ -12,3 +12,7 @@ describe 'command deserializer', ->
     should.equal undefined, serializer.deserialize 'command]'
 
     verify serializer.deserialize('[command]')?
+
+  it 'should deserialize single element', ->
+
+    serializer.deserialize('[000003:bye]').should.eql ['bye']
