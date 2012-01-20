@@ -6,7 +6,7 @@ class exports.Processor
     command = @deserialize command
     @import command
 
-  deserialize: (command) -> ['import_0_0', 'import', 'net']
+  deserialize: (command) -> ['import_0_0', 'import', '../slim/fixtures/calculator']
 
   import: (command) ->
     @vars[command[0]] = require command[2]
