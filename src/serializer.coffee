@@ -1,13 +1,24 @@
-exports.deserialize = (command) ->
-  return if not is_surrounded_by_backets command
-  command = chop command
-  tokens = command.split ':'
-  [tokens[1]]
+exports.deserialize = (@command) ->
+  if has_brackets() then drop_brackets() else return
 
-is_surrounded_by_backets = (string) ->
-  string?.length > 1 and
-  string[0] is '[' and
-  string[string.length - 1] is ']'
+  item() for [1..length()]
 
-chop = (string, length = 1) ->
-  string[length..string.length - length - 1]
+item = () ->
+  length()
+  result = @command[0..@length - 1]
+  drop_item()
+  result
+
+has_brackets = () ->
+  @command?.length > 1 and
+  @command[0] is '[' and
+  @command[@command.length - 1] is ']'
+
+drop_brackets = () -> @command = @command[1..@command.length - 2]
+drop_length = () ->  @command = @command[7..@command.length - 1]
+drop_item = () -> @command = @command[@length + 1..@command.length - 1]
+
+length = () ->
+  @length = parseInt @command[0..6], 10
+  drop_length()
+  @length
