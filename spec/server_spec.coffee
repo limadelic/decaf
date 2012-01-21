@@ -29,7 +29,7 @@ describe 'decaf server', ->
 
     exit = stub sut, 'exit'
 
-    sut.message sut.bye
+    sut.message '000003:bye'
 
     verify exit.called
 
@@ -37,8 +37,8 @@ describe 'decaf server', ->
 
     sut.processor = stub run: (command) ->
 
-    sut.message 'slim command'
+    sut.message '000015:[slim command]'
 
-    verify sut.processor.run.calledWith 'slim command'
+    verify sut.processor.run.calledWith '[slim command]'
 
 

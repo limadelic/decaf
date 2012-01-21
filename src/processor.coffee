@@ -2,14 +2,12 @@ class exports.Processor
 
   constructor: (@socket) ->
 
-  run: (command) ->
-    command = @deserialize command
-    @import command
+  run: (command) -> @import @deserialize command
 
   deserialize: (command) -> ['import_0_0', 'import', '../slim/fixtures/calculator']
 
   import: (command) ->
-    @vars[command[0]] = require command[2]
+    #@vars[command[0]] = require command[2]
     @send command[0], 'OK'
 
   send: (id, status) -> @socket.write @serialize id, status

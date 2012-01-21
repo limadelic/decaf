@@ -13,16 +13,17 @@ class exports.Server
     @socket.on 'data', @message
 
   message: (data) =>
-    command = data.toString()
+    command = @command_from data
 
-    if command is @bye
+    if command is 'bye'
     then @exit()
     else @processor.run command
+
+  command_from: (data) -> data[7..].toString()
 
   exit: ->
     @socket.destroy()
     @server.close()
 
   hello: 'Slim -- V0.3\n'
-  bye: '000003:bye'
 
