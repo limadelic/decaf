@@ -3,11 +3,9 @@ exports.deserialize = (@command) ->
 
   item() for [1..length()]
 
-item = () ->
-  length()
-  result = @command[0..@length - 1]
-  drop_item()
-  result
+item = () -> token length()
+
+length = () -> parseInt token(6), 10
 
 has_brackets = () ->
   @command?.length > 1 and
@@ -15,10 +13,10 @@ has_brackets = () ->
   @command[@command.length - 1] is ']'
 
 drop_brackets = () -> @command = @command[1..@command.length - 2]
-drop_length = () ->  @command = @command[7..@command.length - 1]
-drop_item = () -> @command = @command[@length + 1..@command.length - 1]
 
-length = () ->
-  @length = parseInt @command[0..6], 10
-  drop_length()
-  @length
+token = (length) ->
+  result = @command[0..length - 1]
+  @command = @command = @command[length + 1..@command.length - 1]
+  result
+
+
