@@ -1,15 +1,14 @@
 should = require 'should'
-{ Serializer } = require '../src/serializer'
+{ deserialize } = require '../src/serializer'
 
 describe 'command deserializer', ->
 
-  sut = new Serializer()
+#  sut = new Serializer()
 
   should_not_deserialize = (commands) ->
-    should.equal undefined, sut.deserialize command for command in commands
+    should.equal undefined, deserialize command for command in commands
 
-  verify = (command, result) ->
-    sut.deserialize(command).should.eql result
+  verify = (command, result) -> deserialize(command).should.eql result
 
   it 'should expect command to be enclosed in brackets', ->
 

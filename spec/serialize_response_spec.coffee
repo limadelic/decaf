@@ -1,12 +1,10 @@
 should = require 'should'
-{ Serializer } = require '../src/serializer'
+{ serialize } = require '../src/serializer'
 
 describe 'response deserializer', ->
 
-  sut = new Serializer()
-
   verify = (response, result) ->
-    sut.serialize(response).should.equal result
+    serialize(response).should.equal result
 
   it 'should serialize empty responses', ->
 
