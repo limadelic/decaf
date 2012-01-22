@@ -1,14 +1,16 @@
+{ Serializer } = require './serializer'
+
 class exports.Processor
 
   constructor: (@socket) ->
+    @serializer = new Serializer()
 
-  run: (command) -> @import @deserialize command
+  run: (commands) ->
+    @import command for command in @deserialize commands
 
-  deserialize: (command) -> ['import_0_0', 'import', '../slim/fixtures/calculator']
+  deserialize: (commands) -> @serializer.deserialize commands
 
-  import: (command) ->
-    #@vars[command[0]] = require command[2]
-    @send command[0], 'OK'
+  import: (command) -> @send command[0], 'OK'
 
   send: (id, status) -> @socket.write @serialize id, status
 

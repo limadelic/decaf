@@ -14,7 +14,7 @@ class exports.Serializer
 
   token: (length) ->
     result = @command[0..length - 1]
-    @command = @command[length + 1..@command.length - 1]
+    @command = @command[length + 1..]
     result
 
   is_deserializable: () ->
