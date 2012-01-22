@@ -22,3 +22,13 @@ class exports.Serializer
     @command[0] is '[' and
     @command[@command.length - 1] is ']' and
     (@command = @command[1..@command.length - 2])
+
+  serialize: (response) ->
+    "[#{@serialize_item response}]"
+
+  serialize_item: (item) -> "#{@serialize_length item.length}#{item}:"
+
+  serialize_length: (length) ->
+    length = length.toString()
+    zeroes = (0 for [1..6 - length.length]).join ''
+    zeroes + length

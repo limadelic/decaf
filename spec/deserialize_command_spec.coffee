@@ -1,6 +1,5 @@
 should = require 'should'
 { Serializer } = require '../src/serializer'
-{ verify } = require './spec_helper'
 
 describe 'command deserializer', ->
 
