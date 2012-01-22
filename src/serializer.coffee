@@ -23,12 +23,18 @@ class exports.Serializer
     @command[@command.length - 1] is ']' and
     (@command = @command[1..@command.length - 2])
 
-  serialize: (response) ->
-    "[#{@serialize_item response}]"
+  serialize: (@response) ->
+    "[#{@length_to_s response.length}:#{@response_to_s()}]"
 
-  serialize_item: (item) -> "#{@serialize_length item.length}#{item}:"
+  response_to_s: () -> @string_of (
+    @item_to_s item for item in @response
+  )
 
-  serialize_length: (length) ->
+  item_to_s: (item) -> "#{@length_to_s item.length}:#{item}:"
+
+  length_to_s: (length) ->
     length = length.toString()
-    zeroes = (0 for [1..6 - length.length]).join ''
+    zeroes = @string_of (0 for [1..6 - length.length])
     zeroes + length
+
+  string_of: (array) -> array.join ''

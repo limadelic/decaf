@@ -8,6 +8,9 @@ describe 'command deserializer', ->
   should_not_deserialize = (commands) ->
     should.equal undefined, sut.deserialize command for command in commands
 
+  verify = (command, result) ->
+    sut.deserialize(command).should.eql result
+
   it 'should expect command to be enclosed in brackets', ->
 
     should_not_deserialize [
@@ -21,15 +24,13 @@ describe 'command deserializer', ->
 
   it 'should deserialize single element', ->
 
-    sut.deserialize('[000001:000005:hello]').
-      should.eql ['hello']
+     verify '[000001:000005:hello:]', ['hello']
 
   it 'should deserialize multiple elements', ->
 
-    sut.deserialize('[000002:000004:good:000003:bye]').
-      should.eql ['good', 'bye']
+    verify '[000002:000004:good:000003:bye:]', ['good', 'bye']
 
   it 'should deserialize nested elements', ->
 
-    sut.deserialize('[000003:000004:good:000003:bye:000032:[000002:000004:blue:000003:sky]]').
-      should.eql ['good', 'bye', [ 'blue', 'sky']]
+    verify '[000003:000004:good:000003:bye:000032:[000002:000004:blue:000003:sky:]:]',
+      ['good', 'bye', [ 'blue', 'sky']]
