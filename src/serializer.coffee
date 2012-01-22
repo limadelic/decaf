@@ -1,22 +1,24 @@
-exports.deserialize = (@command) ->
-  if has_brackets() then drop_brackets() else return
+class exports.Serializer
 
-  item() for [1..length()]
+  deserialize: (@command) ->
+    return unless @is_deserializable()
+    @item() for [1..@length()]
 
-item = () -> token length()
+  list: (items) -> new Serializer().deserialize items
 
-length = () -> parseInt token(6), 10
+  item: () ->
+    item = @token @length()
+    @list(item) or item
 
-has_brackets = () ->
-  @command?.length > 1 and
-  @command[0] is '[' and
-  @command[@command.length - 1] is ']'
+  length: () -> parseInt @token(6), 10
 
-drop_brackets = () -> @command = @command[1..@command.length - 2]
+  token: (length) ->
+    result = @command[0..length - 1]
+    @command = @command[length + 1..@command.length - 1]
+    result
 
-token = (length) ->
-  result = @command[0..length - 1]
-  @command = @command = @command[length + 1..@command.length - 1]
-  result
-
-
+  is_deserializable: () ->
+    @command?.length > 1 and
+    @command[0] is '[' and
+    @command[@command.length - 1] is ']' and
+    (@command = @command[1..@command.length - 2])

@@ -1,11 +1,13 @@
 should = require 'should'
-{ deserialize } = require '../src/serializer'
+{ Serializer } = require '../src/serializer'
 { verify } = require './spec_helper'
 
 describe 'command deserializer', ->
 
+  sut = new Serializer()
+
   should_not_deserialize = (commands) ->
-    should.equal undefined, deserialize command for command in commands
+    should.equal undefined, sut.deserialize command for command in commands
 
   it 'should expect command to be enclosed in brackets', ->
 
@@ -20,10 +22,15 @@ describe 'command deserializer', ->
 
   it 'should deserialize single element', ->
 
-    deserialize('[000001:000005:hello]').
+    sut.deserialize('[000001:000005:hello]').
       should.eql ['hello']
 
   it 'should deserialize multiple elements', ->
 
-    deserialize('[000002:000004:good:000003:bye]').
+    sut.deserialize('[000002:000004:good:000003:bye]').
       should.eql ['good', 'bye']
+
+  it 'should deserialize nested elements', ->
+
+    sut.deserialize('[000003:000004:good:000003:bye:000032:[000002:000004:blue:000003:sky]]').
+      should.eql ['good', 'bye', [ 'blue', 'sky']]
