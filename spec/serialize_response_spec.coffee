@@ -6,14 +6,32 @@ describe 'response deserializer', ->
   verify = (response, result) ->
     serialize(response).should.equal result
 
-  it 'should serialize empty responses', ->
+  it 'should serialize empty', ->
 
     verify [], '[000000:]'
 
-  it 'should serialize single item responses', ->
+  it 'should serialize single item', ->
 
     verify ['hello'], '[000001:000005:hello:]'
 
-  it 'should serialize simple list responses', ->
+  it 'should serialize simple list', ->
 
-    verify ['good', 'bye'], '[000002:000004:good:000003:bye:]'
+    verify ['good', 'bye'],
+      '[000002:000004:good:000003:bye:]'
+
+  it 'should serialize nested list', ->
+
+    verify ['good', 'bye', ['blue', 'sky']],
+      '[000003:000004:good:000003:bye:000032:'+
+      '[000002:000004:blue:000003:sky:]:]'
+
+  it 'should serialize non string types', ->
+
+    verify [42], '[000001:000002:42:]'
+    verify [false], '[000001:000005:false:]'
+
+  it 'should serialize null elements', ->
+
+    verify [null], '[000001:000004:null:]'
+    verify [undefined], '[000001:000004:null:]'
+    verify [''], '[000001:000000::]'

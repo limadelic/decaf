@@ -3,8 +3,6 @@ should = require 'should'
 
 describe 'command deserializer', ->
 
-#  sut = new Serializer()
-
   should_not_deserialize = (commands) ->
     should.equal undefined, deserialize command for command in commands
 

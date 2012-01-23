@@ -36,11 +36,14 @@ class Serializer
   serialize: (items) ->
     '[' + @length(items) + ':' + @list(items) + ']'
 
-  list: (items) -> @string (
-    @item item for item in items
-  )
+  list: (items) -> @string (@item item for item in items)
 
-  item: (item) -> "#{@length item}:#{item}:"
+  item: (item) ->
+    item = serialize(item) if item instanceof Array
+    item = 'null' if item in [null, undefined]
+    item = item.toString()
+
+    @length(item) + ':' + item + ':'
 
   length: (length) ->
     length = length.length.toString()
