@@ -29,26 +29,26 @@ class Deserializer
 ########## Serialize
 
 exports.serialize = serialize = (response) ->
-  new Serializer().serialize response
+  result = new Serializer().serialize response
+  length(result) + ':' + result
 
 class Serializer
 
   serialize: (items) ->
-    '[' + @length(items) + ':' + @list(items) + ']'
+    '[' + length(items) + ':' + @list(items) + ']'
 
-  list: (items) -> @string (@item item for item in items)
+  list: (items) -> string (@item item for item in items)
 
   item: (item) ->
-    item = serialize(item) if item instanceof Array
+    item = @serialize item if item instanceof Array
     item = 'null' if item in [null, undefined]
     item = item.toString()
 
-    @length(item) + ':' + item + ':'
+    length(item) + ':' + item + ':'
 
-  length: (length) ->
-    length = length.length.toString()
-    zeroes = @string (0 for [1..6 - length.length])
-    zeroes + length
+length = (item) ->
+  len = item.length.toString()
+  zeroes = string (0 for [1..6 - len.length])
+  zeroes + len
 
-  string: (array) -> array.join ''
-
+string = (array) -> array.join ''

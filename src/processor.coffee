@@ -1,4 +1,4 @@
-{ deserialize } = require './serializer'
+{ serialize, deserialize } = require './serializer'
 
 class exports.Processor
 
@@ -7,11 +7,6 @@ class exports.Processor
   run: (commands) ->
     @import command for command in deserialize commands
 
-  import: (command) -> @send command[0], 'OK'
+  import: (command) -> @send [[command[0], 'OK']]
 
-  send: (id, status) -> @socket.write @serialize id, status
-
-  serialize: (id, status) ->
-    "000054:[000001:000037:[000002:000010:#{id}:000002:#{status}:]:]"
-
-  vars: []
+  send: (response) -> @socket.write serialize response
