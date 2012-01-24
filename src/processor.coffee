@@ -10,13 +10,14 @@ class exports.Processor
 
   id: () -> @command[0]
   operation: () -> @command[1]
+  module: () -> @command[2]
   clazz: () -> @command[3]
 
   process: (@command) -> @[@operation()]()
 
   modules: []
   import: () ->
-    @modules.push require @command[2]
+    @modules.push require @module()
     @respond 'OK'
 
   make: () ->
