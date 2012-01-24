@@ -1,4 +1,7 @@
 |import|
 |..\slim\fixtures\calculator|
 
+|script|Calculator|
+
+
 #|check|plus|2, 2|4|

@@ -2,20 +2,24 @@
 
 class exports.Processor
 
-  vars: []
-
   constructor: (@socket) ->
 
   run: (commands) ->
-    @import command for command in deserialize commands
-
-  import: (@command) ->
-    @vars[@id()] = require @command[2]
-    @send [[@id(), @ok]]
-
-  send: (response) -> @socket.write serialize response
+    @process command for command in deserialize commands
 
   id: () -> @command[0]
   operation: () -> @command[1]
-  ok: 'OK'
+
+  process: (@command) -> @[@operation()]()
+
+  imports: []
+  import: () ->
+    @imports[@id()] = require @command[2]
+    @respond 'OK'
+
+  make: () -> @respond 'OK'
+
+  respond: (message) -> @send [[@id(), message]]
+  send: (response) -> @socket.write serialize response
+
 
