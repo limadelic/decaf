@@ -1,4 +1,4 @@
-########## Deserialize
+#========= Deserialize
 
 exports.deserialize = deserialize = (command) ->
   new Deserializer().deserialize command
@@ -26,7 +26,7 @@ class Deserializer
     @command[@command.length - 1] is ']' and
     (@command = @command[1..@command.length - 2])
 
-########## Serialize
+#========= Serialize
 
 exports.serialize = serialize = (response) ->
   result = new Serializer().serialize response
