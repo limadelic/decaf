@@ -23,12 +23,9 @@ class exports.Processor
     @modules.push require @module()
     @reply 'OK'
 
-  Clazz: () =>
-    module = _.find @modules, (module) => _.has module, @clazz()
-    module[@clazz()]
-
   make: () ->
-    @sut = new (@Clazz())()
+    module = _.find @modules, (module) => _.has module, @clazz()
+    @sut = new (module[@clazz()])()
     @reply 'OK'
 
   call: () ->
