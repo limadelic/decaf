@@ -6,7 +6,9 @@ class exports.Processor
   constructor: (@socket) ->
 
   run: (commands) ->
+    @response = []
     @process command for command in deserialize commands
+    @socket.write serialize @response
 
   id: () -> @command[0]
   operation: () -> @command[1]
@@ -25,10 +27,12 @@ class exports.Processor
     module[@clazz()]
 
   make: () ->
-    @sut = new (do @Clazz)()
+    @sut = new (@Clazz())()
     @reply 'OK'
 
-  reply: (message) -> @send [[@id(), message]]
-  send: (response) -> @socket.write serialize response
+  call: () -> @reply '0'
+
+  reply: (message) -> @response.push [@id(), message]
+
 
 

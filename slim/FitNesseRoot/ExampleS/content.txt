@@ -2,6 +2,5 @@
 |..\slim\fixtures\calculator|
 
 |script|Calculator|
+|check|result|0|
 
-
-#|check|plus|2, 2|4|
