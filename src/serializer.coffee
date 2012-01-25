@@ -1,3 +1,5 @@
+_ = require 'underscore'
+
 #========= Deserialize
 
 exports.deserialize = deserialize = (command) ->
@@ -40,7 +42,7 @@ class Serializer
   list: (items) -> string (@item item for item in items)
 
   item: (item) ->
-    item = @serialize item if item instanceof Array
+    item = @serialize item if _.isArray item
     item = 'null' if item in [null, undefined]
     item = item.toString()
 

@@ -18,15 +18,17 @@ class exports.Processor
   modules: []
   import: () ->
     @modules.push require @module()
-    @respond 'OK'
+    @reply 'OK'
+
+  Clazz: () =>
+    module = _.find @modules, (module) => _.has module, @clazz()
+    module[@clazz()]
 
   make: () ->
-    module = _.find @modules, (module) => module[@clazz()]
-    @sut = module[@clazz()]()
-    #console.log @sut['yay']
-    @respond 'OK'
+    @sut = new (do @Clazz)()
+    @reply 'OK'
 
-  respond: (message) -> @send [[@id(), message]]
+  reply: (message) -> @send [[@id(), message]]
   send: (response) -> @socket.write serialize response
 
 
