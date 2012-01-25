@@ -1,3 +1,3 @@
 class exports.Calculator
 
-  yay: 'yay'
+  result: () -> 0
