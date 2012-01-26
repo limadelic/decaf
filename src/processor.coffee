@@ -14,8 +14,8 @@ class exports.Processor
   operation: () -> @command[1]
   module: () -> @command[2]
   clazz: () -> @command[3]
-  method: () -> @command[3]
-  args: () -> @command[4]
+  property: () -> @command[3]
+  args: () -> _.tail @command, 4
 
   process: (@command) -> @[@operation()]()
 
@@ -25,16 +25,16 @@ class exports.Processor
     @reply 'OK'
 
   make: () ->
-    module = _.find @modules, (module) => _.has module, @clazz()
+    module = _.find @modules, (x) => _.has x, @clazz()
     @sut = new (module[@clazz()])()
     @reply 'OK'
 
   call: () ->
-    method = @sut[@method()]
+    property = @sut[@property()]
 
-    @reply if _.isFunction method
-    then method @args()
-    else method
+    @reply if _.isFunction property
+    then property.apply @sut, @args()
+    else property
 
   reply: (message) -> @response.push [@id(), message]
 

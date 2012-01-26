@@ -3,5 +3,10 @@
 
 |script|Calculator|
 |check|result|0|
-|add|5|
-|check|result|5|
+|add|42|
+|check|result|42|
+|clear|
+|check|result|0|
+|multiply|2|times|21|
+|check|result|42|
+
