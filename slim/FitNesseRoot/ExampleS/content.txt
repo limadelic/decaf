@@ -3,4 +3,5 @@
 
 |script|Calculator|
 |check|result|0|
-
+|add|5|
+|check|result|5|

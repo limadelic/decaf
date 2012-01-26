@@ -15,6 +15,7 @@ class exports.Processor
   module: () -> @command[2]
   clazz: () -> @command[3]
   method: () -> @command[3]
+  args: () -> @command[4]
 
   process: (@command) -> @[@operation()]()
 
@@ -32,7 +33,7 @@ class exports.Processor
     method = @sut[@method()]
 
     @reply if _.isFunction method
-    then method()
+    then method @args()
     else method
 
   reply: (message) -> @response.push [@id(), message]
