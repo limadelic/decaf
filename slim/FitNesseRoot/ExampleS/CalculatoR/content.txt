@@ -11,6 +11,5 @@
 |check|result|42|
 |$result=|result|
 |check|result|$result|
-|div|0|
 
 
