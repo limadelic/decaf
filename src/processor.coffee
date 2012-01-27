@@ -13,9 +13,8 @@ class exports.Processor
   id: () -> @command[0]
   operation: () -> @command[1]
   module: () -> @command[2]
-  symbol: () -> @pull_command 2
   clazz: () -> @command[3]
-  property: () -> @command[3]
+  property: () => @sut[@command[3]]
   args: () -> _.tail @command, 4
 
   process: (@command) -> @[@operation()]()
@@ -34,23 +33,15 @@ class exports.Processor
     module[@clazz()]
 
   call: () ->
-    property = @sut[@property()]
+    @reply if _.isFunction @property()
+    then @property().apply @sut, @args()
+    else @property()
 
-    @reply if _.isFunction property
-    then property.apply @sut, @args()
-    else property
+  callAndAssign: () ->
+    @command[2..2] = []
+    @call()
 
-  symbols: {}
-  callAndAssign: () -> @symbols[@symbol()] = @call()
-
-  reply: (message) ->
-    @response.push [@id(), message]
-    message
-
-  pull_command: (i) ->
-    command = @command[i]
-    @command[i..i] = []
-    command
+  reply: (message) -> @response.push [@id(), message]
 
   new: (constructor, args) ->
     F = () -> constructor.apply @, args
