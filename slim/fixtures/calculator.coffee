@@ -4,6 +4,8 @@ class exports.Calculator
 
   clear: () -> @result = 0
 
+  enter: (n) -> @result = Number n
+
   add: (n) -> @result += Number n
 
   multiplyTimes: (n, times) -> @result = n * times
