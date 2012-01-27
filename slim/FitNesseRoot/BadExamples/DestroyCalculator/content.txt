@@ -1,0 +1,7 @@
+|import|
+|..\slim\fixtures\calculator|
+
+!|script|Calculator|42|
+|check|div|0|Infinity|
+|check|sqrt|-1|NaN|
+|drop_water|

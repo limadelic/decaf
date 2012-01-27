@@ -8,3 +8,9 @@ class exports.Calculator
 
   multiplyTimes: (n, times) -> @result = n * times
 
+  div: (n) -> @result /= n
+
+  sqrt: (n) -> @result = Math.sqrt n
+
+  drop_water: () -> throw 'sparks'
+

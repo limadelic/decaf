@@ -17,7 +17,9 @@ class exports.Processor
   property: () => @sut[@command[3]]
   args: () -> _.tail @command, 4
 
-  process: (@command) -> @[@operation()]()
+  process: (@command) ->
+    try @[@operation()]()
+    catch e then @error e
 
   modules: []
   import: () ->
@@ -42,6 +44,7 @@ class exports.Processor
     @call()
 
   reply: (message) -> @response.push [@id(), message]
+  error: (e) -> @reply "__EXCEPTION__:message:<<#{e}>>"
 
   new: (constructor, args) ->
     F = () -> constructor.apply @, args

@@ -4,14 +4,11 @@
 	<Files/>
 	<Help/>
 	<Properties/>
-	<Prune/>
 	<RecentChanges/>
+	<Refactor/>
 	<Search/>
 	<Suites/>
-	<SymbolicLinks>
-		<ExampleS>ExampleS</ExampleS>
-		<BadExamples>BadExamples</BadExamples>
-	</SymbolicLinks>
+	<Test/>
 	<Versions/>
 	<WhereUsed/>
 </properties>
