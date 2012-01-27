@@ -36,7 +36,15 @@ class exports.Processor
     then property.apply @sut, @args()
     else property
 
-  reply: (message) -> @response.push [@id(), message]
+  symbols: {}
+  callAndAssign: () ->
+    symbol = @command[2]
+    @command[2..2] = []
+    @symbols[symbol] = @call()
+
+  reply: (message) ->
+    @response.push [@id(), message]
+    message
 
 
 

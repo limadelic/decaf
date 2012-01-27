@@ -9,4 +9,6 @@
 |check|result|0|
 |multiply|2|times|21|
 |check|result|42|
+|$result=|result|
+|check|result|$result|
 
