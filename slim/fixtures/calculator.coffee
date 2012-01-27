@@ -1,6 +1,6 @@
 class exports.Calculator
 
-  result: 0
+  constructor: (n = 0) -> @result = Number n
 
   clear: () -> @result = 0
 

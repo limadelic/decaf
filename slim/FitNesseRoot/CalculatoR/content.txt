@@ -1,12 +1,12 @@
 |import|
 |..\slim\fixtures\calculator|
 
-|script|Calculator|
-|check|result|0|
-|add|42|
+|script|Calculator|42|
 |check|result|42|
 |clear|
 |check|result|0|
+|add|42|
+|check|result|42|
 |multiply|2|times|21|
 |check|result|42|
 |$result=|result|

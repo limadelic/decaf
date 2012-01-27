@@ -13,6 +13,7 @@ class exports.Processor
   id: () -> @command[0]
   operation: () -> @command[1]
   module: () -> @command[2]
+  symbol: () -> @pull_command 2
   clazz: () -> @command[3]
   property: () -> @command[3]
   args: () -> _.tail @command, 4
@@ -25,9 +26,12 @@ class exports.Processor
     @reply 'OK'
 
   make: () ->
-    module = _.find @modules, (x) => _.has x, @clazz()
-    @sut = new (module[@clazz()])()
+    @sut = @new @Clazz(), @args()
     @reply 'OK'
+
+  Clazz: () ->
+    module = _.find @modules, (x) => _.has x, @clazz()
+    module[@clazz()]
 
   call: () ->
     property = @sut[@property()]
@@ -37,14 +41,23 @@ class exports.Processor
     else property
 
   symbols: {}
-  callAndAssign: () ->
-    symbol = @command[2]
-    @command[2..2] = []
-    @symbols[symbol] = @call()
+  callAndAssign: () -> @symbols[@symbol()] = @call()
 
   reply: (message) ->
     @response.push [@id(), message]
     message
+
+  pull_command: (i) ->
+    command = @command[i]
+    @command[i..i] = []
+    command
+
+  new: (constructor, args) ->
+    F = () -> constructor.apply @, args
+    F.prototype = constructor.prototype
+    new F()
+
+
 
 
 
