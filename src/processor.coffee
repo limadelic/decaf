@@ -23,7 +23,9 @@ class exports.Processor
 
   modules: []
   import: () ->
+    console.log "importing #{@module()}"
     @modules.push require @module()
+    console.log @modules
     @reply 'OK'
 
   make: () ->

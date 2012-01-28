@@ -1,5 +1,5 @@
 |import|
-|..\slim\fixtures\slim_driver|
+|../slim/fixtures/slim_driver|
 
 |script|Slim Driver|
 |init|
