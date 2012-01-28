@@ -10,6 +10,7 @@
 	<Suites/>
 	<SymbolicLinks>
 		<ExampleS>ExampleS</ExampleS>
+		<SlimSpec>SlimSpec</SlimSpec>
 		<BadExamples>BadExamples</BadExamples>
 	</SymbolicLinks>
 	<Versions/>

@@ -1,0 +1,7 @@
+|import|
+|..\slim\fixtures\slim_driver|
+
+|script|Slim Driver|
+|init|
+|create person|Ben Vonk|
+|ensure	exists|Ben Vonk|

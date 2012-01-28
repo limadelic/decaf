@@ -1,0 +1,18 @@
+|import                 |
+|..\slim\fixtures\oscars|
+
+|do|Oscars|
+
+|The nominees are|
+|The Artist|
+|The Descendants|
+|Extremely Loud & Incredibly Close|
+|The Help|
+|Hugo|
+|Midnight in Paris|
+|Moneyball|
+|The Tree of Life|
+|War Horse|
+
+|And the award goes to|
+|The Tree of Life|
