@@ -3,5 +3,6 @@
 
 |script|Slim Driver|
 |init|
+|reject|ensure	exists|Ben Vonk|
 |create person|Ben Vonk|
 |ensure	exists|Ben Vonk|

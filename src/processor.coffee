@@ -10,13 +10,6 @@ class exports.Processor
     @process command for command in deserialize commands
     @socket.write serialize @response
 
-  id: () -> @command[0]
-  operation: () -> @command[1]
-  module: () -> @command[2]
-  clazz: () -> @command[3]
-  property: () -> @command[3]
-  args: () -> _.tail @command, 4
-
   process: (@command) ->
     try @reply do @[@operation()]
     catch e then @error e
@@ -30,14 +23,25 @@ class exports.Processor
     @sut = @new @Clazz(), @args()
     'OK'
 
-  Clazz: () ->
-    module = _.find @modules, (x) => _.has x, @clazz()
-    module[@clazz()]
-
   call: () ->
     sut = @find_sut()
     property = sut[@property()]
     @exec sut, property
+
+  callAndAssign: () ->
+    @command[2..2] = []
+    @call()
+
+  id: () -> @command[0]
+  operation: () -> @command[1]
+  module: () -> @command[2]
+  clazz: () -> @command[3]
+  property: () -> @command[3]
+  args: () -> _.tail @command, 4
+
+  Clazz: () ->
+    module = _.find @modules, (x) => _.has x, @clazz()
+    module[@clazz()]
 
   exec: (sut, property) ->
     if _.isFunction property
@@ -52,10 +56,6 @@ class exports.Processor
   has_property: (sut) =>
     @property() in _.functions(sut) or
     @property() in _.keys(sut)
-
-  callAndAssign: () ->
-    @command[2..2] = []
-    @call()
 
   reply: (message) -> @response.push [@id(), message]
   error: (e) -> @reply "__EXCEPTION__:message:<<#{e}>>"
