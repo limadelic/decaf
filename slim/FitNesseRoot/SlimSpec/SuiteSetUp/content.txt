@@ -1,0 +1,2 @@
+|import|
+|../slim/fixtures/slim_spec|
