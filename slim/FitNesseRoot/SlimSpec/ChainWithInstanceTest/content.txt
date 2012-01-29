@@ -1,3 +1,5 @@
+{{{
+
 !|import           |
 |fitnesse.slim.test|
 
@@ -43,3 +45,4 @@ So a scenario can behave more like a sub routine with local scope (but is not li
 
 !|script|$Bob_INSTANCE     |
 |check  |get string arg|Bob|
+}}}

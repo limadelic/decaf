@@ -20,6 +20,7 @@ class exports.Processor
     'OK'
 
   make: () ->
+    @expand_symbols()
     @sut = @new @Clazz(), @args()
     'OK'
 
@@ -28,16 +29,26 @@ class exports.Processor
     property = sut[@property()]
     @exec sut, property
 
+  vars: {}
   callAndAssign: () ->
+    var_name = '$' + @symbol()
     @command[2..2] = []
-    @call()
+    @vars[var_name] = @call()
 
   id: () -> @command[0]
   operation: () -> @command[1]
   module: () -> @command[2]
+  symbol: () -> @command[2]
   clazz: () -> @command[3]
   property: () -> @command[3]
+  call_signature: () -> _.tail @command, 3
   args: () -> _.tail @command, 4
+
+  expand_symbols: () -> @expand_symbol symbol, i for symbol, i in @call_signature()
+
+  expand_symbol: (symbol, i) ->
+    return unless _.has @vars, symbol
+    @command[3 + i] = @vars[symbol]
 
   Clazz: () ->
     module = _.find @modules, (x) => _.has x, @clazz()

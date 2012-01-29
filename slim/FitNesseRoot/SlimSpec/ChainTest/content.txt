@@ -1,9 +1,10 @@
-!|script|echo fixture|
+!|script|Echo|
 |$TEST_SLIM=|echo|SlimSpec|
 
 !|script|$TEST_SLIM|
 |ensure|echo boolean|true|
 
+{{{
 |$TEST_SLIM|
 |string|get string arg?|
 |Bob|Bob|
@@ -14,7 +15,7 @@
 !|Query:Test$QUERY|1|
 |n|2n|
 |1|2|
-
+}}}
 
 
 
