@@ -3,8 +3,8 @@ class exports.Echo
 
 class exports.SlimSpec
 
-  echo: (sound) -> sound
+  string: 'Bob'
 
-  string: ''
+  echo: (@sound) -> @sound
 
-  setString: (@string) ->
+

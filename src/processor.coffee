@@ -11,9 +11,8 @@ class exports.Processor
     @socket.write serialize @response
 
   process: (@command) ->
-    console.log @command
     try @reply do @[@operation()]
-    catch e then @error console.log e + @command
+    catch e then @error e
 
   modules: []
   import: () ->
@@ -27,7 +26,6 @@ class exports.Processor
 
   call: () ->
     sut = @find_sut()
-    console.log sut
     property = sut[@property()]
     @exec sut, property
 
@@ -63,20 +61,17 @@ class exports.Processor
 
   decision_table: ['table', 'beginTable', 'endTable', 'execute', 'reset']
 
-  find_sut: () ->
-    console.log 'dude wheres my sut?' + @property()
-    if @has_property @sut then @sut
-    else if @sut.sut? and @has_property @sut.sut then @sut.sut
+  find_sut: () =>
+    if @property_of(@sut)? then @sut
+    else if @sut.sut? and @property_of(@sut.sut)? then @sut.sut
     #else if @has_set_property() then @find_sut()
     else if @property() in @decision_table then @sut
     else throw 'property not found ' + @property()
 
-  has_property: (sut) =>
-    @property() in _.functions(sut) or
-    @property() in _.keys(sut)
+  property_of: (sut) =>
+    return key for key of sut when key is @property()
 
-  has_set_property: () ->
-    console.log 'here'
+  is_set_property: () ->
     return false unless @property()[0..2] is 'set'
     true
 

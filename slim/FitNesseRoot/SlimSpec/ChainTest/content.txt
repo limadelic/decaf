@@ -1,11 +1,10 @@
-{{{
 !|script|Echo|
 |$TEST_SLIM=|echo|SlimSpec|
 
 !|script|$TEST_SLIM|
 |ensure|echo|true|
-}}}
-!|SlimSpec|
+
+!|$TEST_SLIM|
 |string|string?|
 |Bob|Bob|
 
