@@ -26,8 +26,11 @@ class exports.Processor
 
   call: () ->
     sut = @find_sut()
-    property = sut[@property()]
-    @exec sut, property
+    value = sut[@property()]
+
+    if _.isFunction value then value.apply sut, @args()
+    else if @is_setter then @set_property sut
+    else value
 
   vars: {}
   callAndAssign: () ->
@@ -54,26 +57,26 @@ class exports.Processor
     module = _.find @modules, (x) => _.has x, @clazz()
     module[@clazz()]
 
-  exec: (sut, property) ->
-    if _.isFunction property
-    then property.apply sut, @args()
-    else property
-
   decision_table: ['table', 'beginTable', 'endTable', 'execute', 'reset']
 
   find_sut: () =>
     if @property_of(@sut)? then @sut
     else if @sut.sut? and @property_of(@sut.sut)? then @sut.sut
-    #else if @has_set_property() then @find_sut()
+    else if @is_setter = @is_set_property() then @find_sut()
     else if @property() in @decision_table then @sut
     else throw 'property not found ' + @property()
 
-  property_of: (sut) =>
-    return key for key of sut when key is @property()
+  property_of: (sut) => return property for property of sut when property is @property()
 
+  is_setter: false
   is_set_property: () ->
     return false unless @property()[0..2] is 'set'
+    @command[3] = @command[3][0].toLowerCase() + @command[3][4..]
     true
+
+  set_property: (sut) ->
+    sut[@property()] = @args()[0]
+    @is_setter = false
 
   reply: (message) -> @response.push [@id(), message]
   error: (e) -> @reply "__EXCEPTION__:message:<<#{e}>>"

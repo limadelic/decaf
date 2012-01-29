@@ -3,7 +3,7 @@ class exports.Echo
 
 class exports.SlimSpec
 
-  string: 'Bob'
+  string: null
 
   echo: (@sound) -> @sound
 
