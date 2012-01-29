@@ -1,14 +1,15 @@
+{{{
 !|script|Echo|
 |$TEST_SLIM=|echo|SlimSpec|
 
 !|script|$TEST_SLIM|
-|ensure|echo boolean|true|
-
-{{{
-|$TEST_SLIM|
-|string|get string arg?|
+|ensure|echo|true|
+}}}
+!|SlimSpec|
+|string|string?|
 |Bob|Bob|
 
+{{{
 !|script|echo fixture|
 |$QUERY=|echo|Query|
 
