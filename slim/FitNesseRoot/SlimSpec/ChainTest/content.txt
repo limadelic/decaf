@@ -10,11 +10,10 @@
 
 !|script|Echo|
 |$QUERY=|echo|Query|
-{{{
+
 !|Query:Test$QUERY|1|
 |n|2n|
 |1|2|
-}}}
 
 
 

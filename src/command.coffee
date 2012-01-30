@@ -15,7 +15,7 @@ class exports.Command
   symbol: () ->
     result = @items[2]
     @items[2..2] = []
-    '$' + result
+    result
 
   is_set_property: () ->
     return false unless @property()[0..2] is 'set'
@@ -26,10 +26,10 @@ class exports.Command
 
   is_decision_table: () -> @property() in @decision_table
 
-  expand_symbols: (@vars) -> @expand_symbol symbol, i for symbol, i in @call_signature()
+  expand_symbols: (@vars) ->
+    @expand_symbol token, i for token, i in @call_signature()
 
-  expand_symbol: (symbol, i) ->
-    return unless _.has @vars, symbol
-    @items[3 + i] = @vars[symbol]
+  expand_symbol: (token, i) ->
+    @items[3 + i] = token.replace ///\$#{bar}///, value for bar, value of @vars
 
 
