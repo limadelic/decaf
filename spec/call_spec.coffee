@@ -1,14 +1,13 @@
 should = require 'should'
-{ Processor } = require '../src/processor'
+{ Command } = require '../src/command'
 
 describe 'calling methods', ->
 
-  decaf = new Processor()
-  decaf.command = [
+  command = new Command [
     'id', 'call', 'actor', 'methodName', 'arg1', 'arg2'
   ]
 
   it 'should get args from commands', ->
 
-    decaf.args().should.eql ['arg1', 'arg2']
+    command.args().should.eql ['arg1', 'arg2']
 

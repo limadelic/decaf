@@ -2,6 +2,7 @@ should = require 'should'
 { Processor } = require '../src/processor'
 { verify, stub } = require './spec_helper'
 { Calculator } = require '../slim/fixtures/calculator'
+{ Command } = require '../src/command'
 
 describe 'making suts', ->
 
@@ -11,6 +12,6 @@ describe 'making suts', ->
   it 'should make a Calculator', ->
 
     decaf.modules = [ require '../slim/fixtures/calculator' ]
-    decaf.process [ '42', 'make', 'stuff', 'Calculator' ]
+    decaf.process new Command [ '42', 'make', 'stuff', 'Calculator' ]
 
     verify decaf.sut instanceof Calculator

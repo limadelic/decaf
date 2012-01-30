@@ -1,4 +1,5 @@
 _ = require 'underscore'
+{ Command } = require './command'
 
 #========= Deserialize
 
