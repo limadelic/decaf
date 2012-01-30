@@ -1,5 +1,5 @@
 !|script|Echo|
-|$TEST_SLIM=|echo|SlimSpec|
+|$TEST_SLIM=|echo|TestSlim|
 
 !|script|$TEST_SLIM|
 |ensure|echo|true|

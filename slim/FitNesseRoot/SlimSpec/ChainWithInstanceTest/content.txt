@@ -1,18 +1,14 @@
-{{{
-
-!|import           |
-|fitnesse.slim.test|
-
 The fixture chaining with instances allows you to store an object instance in a Slim symbol and to use the instance as the table actor for an arbitrary Slim table.
 Here createTestSlimWithString(string) is a factory method that creates a new !-TestSlim-! instance, sets the given string and returns the object.
 
 see SlimSymbolCanHoldInstanceUsedAsParameter
 
-!|script             |test slim                         |
+!|script             | test slim                        |
 |$TEST_SLIM_INSTANCE=|create test slim with string|Uncle|
 |start               |$TEST_SLIM_INSTANCE               |
-|check               |get string arg              |Uncle|
+|check               |string|Uncle|
 
+{{{
 We can use it for a decision table.
 
 |$TEST_SLIM_INSTANCE|

@@ -13,5 +13,3 @@ describe 'the command', ->
     command = new Command ['id', 'make', 'instance', '$classFixture']
     command.expand_symbols class: 'Test'
     command.clazz().should.equal 'TestFixture'
-
-

@@ -1,9 +1,13 @@
 class exports.Echo
   echo: (sound) -> sound
 
-class exports.SlimSpec
+class exports.TestSlim
   string: null
   echo: (@sound) -> @sound
+  createTestSlimWithString: (s) ->
+    x = new TestSlim()
+    x.string = s
+    x
 
 class exports.TestQuery
   constructor: (@n) ->

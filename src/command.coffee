@@ -27,9 +27,13 @@ class exports.Command
   is_decision_table: () -> @property() in @decision_table
 
   expand_symbols: (@vars) ->
-    @expand_symbol token, i for token, i in @call_signature()
+    for bar, value of @vars
+      for token, i in @call_signature()
+        @expand_symbol bar, value, token, i
 
-  expand_symbol: (token, i) ->
-    @items[3 + i] = token.replace ///\$#{bar}///, value for bar, value of @vars
+  expand_symbol: (bar, value, token, i) ->
+    if _.isString value
+    then @items[3 + i] = token.replace ///\$#{bar}///, value
+    else if i is 0 and token is '$' + bar then @items[3] = value
 
 
