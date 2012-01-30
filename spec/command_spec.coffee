@@ -8,6 +8,4 @@ describe 'the command structure', ->
 
     new Command(['id']).id().should.equal 'id'
 
-    #new Command().push('id').id().should.equal 'id'
-
 

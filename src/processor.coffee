@@ -1,8 +1,12 @@
 _ = require 'underscore'
 { serialize, deserialize } = require './serializer'
 { Command } = require './command'
+{ Sut } = require './sut'
 
 class exports.Processor
+
+  modules: []
+  vars: {}
 
   constructor: (@socket) ->
 
@@ -15,55 +19,21 @@ class exports.Processor
     try @reply do @[@command.operation()]
     catch e then @error e
 
-  modules: []
   import: () ->
     @modules.push require @command.module()
     'OK'
 
   make: () ->
     @command.expand_symbols @vars
-    @sut = @new @Clazz(), @command.args()
+    @sut = new Sut @modules, @command
     'OK'
 
-  call: () ->
-    sut = @find_sut()
-    value = sut[@command.property()]
+  call: () -> @sut.call @command
 
-    if _.isFunction value then value.apply sut, @command.args()
-    else if @is_setter then @set_property sut
-    else value
-
-  vars: {}
   callAndAssign: () -> @vars[@command.symbol()] = @call()
-
-  Clazz: () ->
-    module = _.find @modules, (x) => _.has x, @command.clazz()
-    module[@command.clazz()]
-
-  find_sut: () =>
-    if @property_of(@sut)? then @sut
-    else if @sut.sut? and @property_of(@sut.sut)? then @sut.sut
-    else if @is_setter = @command.is_set_property() then @find_sut()
-    else if @command.is_decision_table() then @sut
-    else throw 'property not found ' + @command.property()
-
-  property_of: (sut) =>
-    return property for property of sut when property is @command.property()
-
-  is_setter: false
-
-  set_property: (sut) ->
-    sut[@command.property()] = @command.args()[0]
-    @is_setter = false
 
   reply: (message) -> @response.push [@command.id(), message]
   error: (e) -> @reply "__EXCEPTION__:message:<<#{e}>>"
-
-  new: (constructor, args) ->
-    F = () -> constructor.apply @, args
-    F.prototype = constructor.prototype
-    new F()
-
 
 
 

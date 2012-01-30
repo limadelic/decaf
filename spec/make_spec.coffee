@@ -14,4 +14,4 @@ describe 'making suts', ->
     decaf.modules = [ require '../slim/fixtures/calculator' ]
     decaf.process new Command [ '42', 'make', 'stuff', 'Calculator' ]
 
-    verify decaf.sut instanceof Calculator
+    verify decaf.sut.sut instanceof Calculator
