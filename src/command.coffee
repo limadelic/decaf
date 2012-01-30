@@ -17,8 +17,6 @@ class exports.Command
     @items[2..2] = []
     '$' + result
 
-  expand_symbol: (i, value) -> @items[i] = value
-
   is_set_property: () ->
     return false unless @property()[0..2] is 'set'
     @items[3] = @property()[0].toLowerCase() + @property()[4..]
@@ -27,3 +25,11 @@ class exports.Command
   decision_table: ['table', 'beginTable', 'endTable', 'execute', 'reset']
 
   is_decision_table: () -> @property() in @decision_table
+
+  expand_symbols: (@vars) -> @expand_symbol symbol, i for symbol, i in @call_signature()
+
+  expand_symbol: (symbol, i) ->
+    return unless _.has @vars, symbol
+    @items[3 + i] = @vars[symbol]
+
+

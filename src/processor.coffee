@@ -21,7 +21,7 @@ class exports.Processor
     'OK'
 
   make: () ->
-    @expand_symbols()
+    @command.expand_symbols @vars
     @sut = @new @Clazz(), @command.args()
     'OK'
 
@@ -35,12 +35,6 @@ class exports.Processor
 
   vars: {}
   callAndAssign: () -> @vars[@command.symbol()] = @call()
-
-  expand_symbols: () -> @expand_symbol symbol, i for symbol, i in @command.call_signature()
-
-  expand_symbol: (symbol, i) ->
-    return unless _.has @vars, symbol
-    @command.expand_symbol 3 + i, @vars[symbol]
 
   Clazz: () ->
     module = _.find @modules, (x) => _.has x, @command.clazz()
