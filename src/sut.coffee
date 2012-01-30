@@ -3,9 +3,10 @@ _ = require 'underscore'
 class exports.Sut
 
   constructor: (@modules, @command) ->
-    @sut = @new @Clazz(), @command.args()
+    @sut = @newt @Clazz(), @command.args()
 
   call: (@command) ->
+    console.log 'call' + @command.call_signature()
     sut = @find_sut()
     value = sut[@command.property()]
 
@@ -14,8 +15,8 @@ class exports.Sut
     else value
 
   Clazz: () ->
-    module = _.find @modules, (x) => _.has x, @command.clazz()
-    module[@command.clazz()]
+    @module = _.find @modules, (x) => _.has x, @command.clazz()
+    @module[@command.clazz()]
 
   find_sut: () =>
     if @property_of(@sut)? then @sut
@@ -33,7 +34,7 @@ class exports.Sut
     sut[@command.property()] = @command.args()[0]
     @is_setter = false
 
-  new: (constructor, args) ->
+  newt: (constructor, args) ->
     F = () -> constructor.apply @, args
     F.prototype = constructor.prototype
     new F()

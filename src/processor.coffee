@@ -26,6 +26,7 @@ class exports.Processor
   make: () ->
     @command.expand_symbols @vars
     @sut = new Sut @modules, @command
+    console.log 'made>' + @sut
     'OK'
 
   call: () -> @sut.call @command
