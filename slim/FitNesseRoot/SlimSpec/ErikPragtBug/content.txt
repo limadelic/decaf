@@ -1,0 +1,8 @@
+!|script|Test Slim|
+|$VALUE=|echo string|Bob||
+|$VALUEX=|echo string|bill|
+
+!|script|
+|check|echo string|$VALUE|Bob|
+|check|echo string|$VALUEX|bill|
+|check|echo string|$VALUE $VALUEX|Bob bill|

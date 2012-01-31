@@ -16,21 +16,22 @@ class exports.Processor
     @socket.write serialize @response
 
   process: (@command) ->
+    console.log @command.items
     try @reply do @[@command.operation()]
     catch e then @error e
 
-  import: () ->
+  import: ->
     @modules.push require @command.module()
     'OK'
 
-  make: () ->
+  make: ->
     @command.expand_symbols @vars
     @sut = new Sut @modules, @command
     'OK'
 
-  call: () -> @sut.call @command
+  call: -> @sut.call @command
 
-  callAndAssign: () -> @vars[@command.symbol()] = @call()
+  callAndAssign: -> @vars[@command.symbol()] = @call()
 
   reply: (message) -> @response.push [@command.id(), message]
   error: (e) -> @reply "__EXCEPTION__:message:<<#{e}>>"

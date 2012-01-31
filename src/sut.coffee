@@ -1,6 +1,9 @@
 _ = require 'underscore'
+{ SlimHelperLibrary } = require './slim_helper_library'
 
 class exports.Sut
+
+  libraries: [ new SlimHelperLibrary @ ]
 
   constructor: (@modules, @command) ->
     @sut = if _.isString @command.clazz()
@@ -28,6 +31,8 @@ class exports.Sut
 
   property_of: (sut) =>
     return property for property of sut when property is @command.property()
+
+  fixture: ->
 
   is_setter: false
 
