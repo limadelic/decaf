@@ -34,7 +34,7 @@ class exports.Command
 
   expand_symbol: (bar, value, token, i) ->
     if _.isString value
-    then @items[3 + i] = token.replace ///\$#{bar}///, value
+    then @items[3 + i] = token?.replace? ///\$#{bar}\b///, value
     else if i is 0 and token is '$' + bar then @items[3] = value
 
 

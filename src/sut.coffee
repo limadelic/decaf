@@ -18,6 +18,8 @@ class exports.Sut
     else @command.clazz()
 
   call: (@command) ->
+    @command.expand_symbols @vars
+
     sut = @find_sut()
     value = sut[@command.property()]
 
