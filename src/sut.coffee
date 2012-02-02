@@ -4,6 +4,7 @@ _ = require 'underscore'
 class exports.Sut
 
   constructor: ->
+    @suts = {}
     @modules = []
     @vars = {}
     @libraries = [ new SlimHelperLibrary @ ]
@@ -13,7 +14,7 @@ class exports.Sut
   make: (@command) ->
     @command.expand_symbols @vars
 
-    @sut = if _.isString @command.clazz()
+    @suts[@command.sut()] = @sut = if _.isString @command.clazz()
     then @new @Clazz(), @command.args()
     else @command.clazz()
 
@@ -22,7 +23,7 @@ class exports.Sut
     value = sut[@command.property()]
 
     if _.isFunction value then value.apply sut, @command.args()
-    else if @is_setter then @set_property sut
+    else if @is_setter_value() then @set_property sut
     else value
 
   callAndAssign: (@command) -> @vars[@command.symbol()] = @call @command
@@ -42,11 +43,12 @@ class exports.Sut
   property_of: (sut) =>
     return property for property of sut when property is @command.property()
 
-  fixture: ->
+  is_setter_value: -> @is_setter or @command.args().length is 1
 
   set_property: (sut) ->
     sut[@command.property()] = @command.args()[0]
     @is_setter = false
+    undefined
 
   new: (constructor, args) ->
     F = () -> constructor.apply @, args

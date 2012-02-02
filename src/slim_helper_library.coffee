@@ -1,14 +1,14 @@
 class exports.SlimHelperLibrary
 
-  ACTOR_INSTANCE_NAME: "scriptTableActor"
+  default_actor: "scriptTableActor"
 
-  constructor: (@executor = null) ->
+  constructor: (@sut = null) ->
 
   fixtures: []
 
-  fixture: -> @executor.instance @ACTOR_INSTANCE_NAME
+  fixture: -> @sut.suts[@default_actor]
   pushFixture: -> @fixtures.push @fixture()
-  popFixture: -> @executor.instance[@ACTOR_INSTANCE_NAME] = @fixtures.pop
+  popFixture: -> @sut.suts[@default_actor] = @fixtures.pop
 
 
 

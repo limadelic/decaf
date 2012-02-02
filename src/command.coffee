@@ -7,6 +7,7 @@ class exports.Command
   id: -> @items[0]
   operation: -> @items[1]
   module: -> @items[2]
+  sut: -> @items[2]
   clazz: -> @items[3]
   property: -> @items[3]
   call_signature: -> _.tail @items, 3
