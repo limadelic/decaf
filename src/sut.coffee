@@ -4,7 +4,6 @@ _ = require 'underscore'
 class exports.Sut
 
   constructor: ->
-    @suts = {}
     @modules = []
     @vars = {}
     @libraries = [ new SlimHelperLibrary @ ]
@@ -14,7 +13,7 @@ class exports.Sut
   make: (@command) ->
     @command.expand_symbols @vars
 
-    @suts[@command.sut()] = @sut = if _.isString @command.clazz()
+    @sut = if _.isString @command.clazz()
     then @new @Clazz(), @command.args()
     else @command.clazz()
 

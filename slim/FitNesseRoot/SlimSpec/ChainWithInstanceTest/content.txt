@@ -2,7 +2,7 @@ The fixture chaining with instances allows you to store an object instance in a 
 Here createTestSlimWithString(string) is a factory method that creates a new !-TestSlim-! instance, sets the given string and returns the object.
 
 see SlimSymbolCanHoldInstanceUsedAsParameter
-{{{
+
 !|script             |test slim                         |
 |$TESTSLIM_INSTANCE=|create test slim with string|Uncle|
 |start               |$TESTSLIM_INSTANCE               |
@@ -13,7 +13,7 @@ We can use it for a decision table.
 |$TESTSLIM_INSTANCE|
 |string?            |
 |Uncle              |
-}}}
+
 The !-SlimHelperLibrary-! is a class that is automatically available as a library fixture. It contains methods to get and set the script table actor in the Slim !-StatementExecutor-!.
 
  * getFixture() returns the current table actor
@@ -36,12 +36,12 @@ So a scenario can behave more like a sub routine with local scope (but is not li
 |string       |Uncle                                 |
 |check|string       |Uncle                                 |
 |check            |fixture   |TestSlim: 2, Uncle     |
-{{{
-
 |do something with|Bob           |and restore old fixture|
-|check            |get string arg|Uncle                  |
+|check            |string|Uncle                  |
+
+
 
 !|script|$Bob_INSTANCE     |
-|check  |get string arg|Bob|
-}}}
+|check  |string|Bob|
+
 
