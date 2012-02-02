@@ -27,14 +27,14 @@ So a scenario can behave more like a sub routine with local scope (but is not li
 |push fixture                                                   |
 |start           |test slim                                     |
 |string          |@name                                         |
-|check           |get fixture      |TestSlim: 0, @name          |
+|check           |fixture      |TestSlim: 0, @name          |
 |check           |get string arg   |@name                       |
 |$@name_INSTANCE=|get fixture                                   |
 |pop fixture                                                    |
 
 !|script          |test slim     |2                      |
 |string       |Uncle                                 |
-|check            |get fixture   |TestSlim: 2, Uncle     |
+|check            |fixture   |TestSlim: 2, Uncle     |
 {{{
 |do something with|Bob           |and restore old fixture|
 |check            |get string arg|Uncle                  |

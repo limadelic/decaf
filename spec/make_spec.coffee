@@ -1,19 +1,18 @@
 should = require 'should'
-{ Processor } = require '../src/processor'
+{ Sut } = require '../src/sut'
 { verify, stub } = require './spec_helper'
 { Calculator } = require '../slim/fixtures/calculator'
 { Command } = require '../src/command'
 
 describe 'making suts', ->
 
-  decaf = new Processor()
-  stub decaf, 'reply'
-  sut = () -> decaf.sut.sut
+  decaf = new Sut()
+  sut = () -> decaf.sut
 
   it 'should make a Calculator', ->
 
     decaf.modules = [ require '../slim/fixtures/calculator' ]
-    decaf.process new Command [ '42', 'make', 'stuff', 'Calculator' ]
+    decaf.make new Command [ '42', 'make', 'stuff', 'Calculator' ]
 
     verify sut() instanceof Calculator
 
@@ -26,7 +25,7 @@ describe 'making suts', ->
   it 'should reuse an object in a symbol', ->
 
     decaf.vars['cached'] = { name: 'lola' }
-    decaf.process new Command [ '42', 'make', 'stuff', '$cached' ]
+    decaf.make new Command [ '42', 'make', 'stuff', '$cached' ]
 
     sut().name.should.equal 'lola'
 

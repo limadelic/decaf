@@ -5,14 +5,14 @@ _ = require 'underscore'
 
 class exports.Processor
 
-  modules: []
-  vars: {}
-
   constructor: (@socket) ->
+    @sut = new Sut()
 
   run: (commands) ->
     @response = []
+
     @process new Command command for command in deserialize commands
+
     @socket.write serialize @response
 
   process: (@command) ->
@@ -21,17 +21,16 @@ class exports.Processor
     catch e then @error e
 
   import: ->
-    @modules.push require @command.module()
+    @sut.require @command
     'OK'
 
   make: ->
-    @command.expand_symbols @vars
-    @sut = new Sut @modules, @command
+    @sut.make @command
     'OK'
 
   call: -> @sut.call @command
 
-  callAndAssign: -> @vars[@command.symbol()] = @call()
+  callAndAssign: -> @sut.callAndAssign @command
 
   reply: (message) -> @response.push [@command.id(), message]
   error: (e) -> @reply "__EXCEPTION__:message:<<#{e}>>"

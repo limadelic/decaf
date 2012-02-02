@@ -3,9 +3,16 @@ _ = require 'underscore'
 
 class exports.Sut
 
-  libraries: [ new SlimHelperLibrary @ ]
+  constructor: ->
+    @modules = []
+    @vars = {}
+    @libraries = [ new SlimHelperLibrary @ ]
 
-  constructor: (@modules, @command) ->
+  require: (@command) -> @modules.push require @command.module()
+
+  make: (@command) ->
+    @command.expand_symbols @vars
+
     @sut = if _.isString @command.clazz()
     then @new @Clazz(), @command.args()
     else @command.clazz()
@@ -18,14 +25,17 @@ class exports.Sut
     else if @is_setter then @set_property sut
     else value
 
-  Clazz: () ->
+  callAndAssign: (@command) -> @vars[@command.symbol()] = @call @command
+
+  Clazz: ->
     @module = _.find @modules, (x) => _.has x, @command.clazz()
     @module[@command.clazz()]
 
-  find_sut: () =>
+  find_sut: =>
     if @property_of(@sut)? then @sut
     else if @sut.sut? and @property_of(@sut.sut)? then @sut.sut
     else if @is_setter = @command.is_set_property() then @find_sut()
+    else if @property_of(@libraries[0])? then @libraries[0]
     else if @command.is_decision_table() then @sut
     else throw 'property not found ' + @command.property()
 
@@ -33,8 +43,6 @@ class exports.Sut
     return property for property of sut when property is @command.property()
 
   fixture: ->
-
-  is_setter: false
 
   set_property: (sut) ->
     sut[@command.property()] = @command.args()[0]
