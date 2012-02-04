@@ -16,6 +16,7 @@ class exports.Processor
     @socket.write serialize @response
 
   process: (@command) ->
+    console.log @command.items
     try @reply do @[@command.operation()]
     catch e then @error e
 

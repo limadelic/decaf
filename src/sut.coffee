@@ -17,6 +17,8 @@ class exports.Sut
     then @new @Clazz(), @command.args()
     else @command.clazz()
 
+    @libraries.push @sut if @command.is_library()
+
   call: (@command) ->
     @command.expand_symbols @vars
 
@@ -33,13 +35,15 @@ class exports.Sut
     @module = _.find @modules, (x) => _.has x, @command.clazz()
     @module[@command.clazz()]
 
-  find_sut: =>
+  find_sut: ->
     if @property_of(@sut)? then @sut
     else if @sut.sut? and @property_of(@sut.sut)? then @sut.sut
     else if @is_setter = @command.is_set_property() then @find_sut()
-    else if @property_of(@libraries[0])? then @libraries[0]
+    else if (library = @find_library())? then library
     else if @command.is_decision_table() then @sut
     else throw 'property not found ' + @command.property()
+
+  find_library: -> _.find @libraries, (library) => @property_of library
 
   property_of: (sut) =>
     return property for property of sut when property is @command.property()

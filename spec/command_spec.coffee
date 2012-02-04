@@ -10,6 +10,6 @@ describe 'the command', ->
 
   it 'expands symbols', ->
 
-    command = new Command ['id', 'make', 'instance', '$classFixture']
-    command.expand_symbols class: 'Test'
+    command = new Command ['id', 'make', 'instance', '$class']
+    command.expand_symbols class: 'TestFixture'
     command.clazz().should.equal 'TestFixture'
