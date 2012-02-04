@@ -2,7 +2,7 @@
 |note|Library is installed via Library table above|
 
 !|scenario|when a method not present on the fixture is called|
-|echo|
+|echo support|
 
 !|scenario|then it should be called on the installed library|
 |ensure|echo support called|
@@ -11,7 +11,7 @@
 |note|See for installed libraries the Library table above|
 
 !|scenario|when such a method is called|
-|echo|
+|echo support|
 
 !|scenario|then the last library created takes precedence over earlier created libraries|
 |ensure|special echo support called|

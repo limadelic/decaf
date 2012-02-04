@@ -43,7 +43,9 @@ class exports.Sut
     else if @command.is_decision_table() then @sut
     else throw 'property not found ' + @command.property()
 
-  find_library: -> _.find @libraries, (library) => @property_of library
+  find_library: ->
+    _.find @libraries[0..].reverse(), (library) =>
+        @property_of library
 
   property_of: (sut) =>
     return property for property of sut when property is @command.property()

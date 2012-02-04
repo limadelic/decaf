@@ -27,7 +27,7 @@ class exports.Command
 
   is_decision_table: -> @property() in @decision_table
 
-  is_library: -> @sut().indexOf 'library' is 0
+  is_library: -> @sut().indexOf('library') is 0
 
   expand_symbols: (@vars) ->
     for bar, value of @vars
