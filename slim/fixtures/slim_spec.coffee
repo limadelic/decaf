@@ -15,6 +15,7 @@ class exports.TestSlim
   isSame: (other) -> @ is other
   stringFromOther: (other) -> other.string
   returnConstructorArg: -> @generation
+  concatenateThreeArgs: (a, b, c) -> '' + a + b + c
 
 class exports.TestQuery
   constructor: (@n) ->

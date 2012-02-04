@@ -1,0 +1,18 @@
+!|script|test slim|
+
+!|scenario|should be bill|value|
+|check|echo|@value|bill|
+
+!|script|
+|$x=|echo|bill|
+|should be bill|$x|
+
+!|script|
+|$x=|echo|bob|
+
+!|script|
+|$x=|echo|bill|
+|should be bill|$x|
+
+
+
