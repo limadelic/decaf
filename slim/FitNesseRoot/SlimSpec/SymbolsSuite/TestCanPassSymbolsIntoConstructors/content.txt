@@ -1,0 +1,14 @@
+You should be able to pass symbols into constructor arguments of slim tables.
+|script|test slim|
+|$X=|echo|99|
+
+|script|test slim|$X|
+|check|return constructor arg|99|
+
+|script|
+|start|test slim|$X|
+|check|return constructor arg|99|
+
+|test slim|$X|
+|return constructor arg?|
+|99|

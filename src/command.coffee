@@ -20,7 +20,7 @@ class exports.Command
 
   is_set_property: ->
     return false unless @property()[0..2] is 'set'
-    @items[3] = @property()[0].toLowerCase() + @property()[4..]
+    @items[3] = @property()[3].toLowerCase() + @property()[4..]
     true
 
   decision_table: ['table', 'beginTable', 'endTable', 'execute', 'reset']

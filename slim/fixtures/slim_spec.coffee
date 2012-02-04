@@ -1,4 +1,5 @@
 class exports.EchoFixture
+  name: undefined
   echo: (sound) -> sound
 
 class exports.TestSlim
