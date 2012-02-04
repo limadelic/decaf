@@ -23,4 +23,15 @@ class exports.NullFixture
   null: -> null
   blank: -> ''
 
+class exports.SplitFixture
+  constructor: (schema) ->
+    @lines = schema.split ';'
+  query: ->
+    results = []
+    for i in [0..@lines.length - 1]
+      line = @lines[i].split ','
+      results.push [[1, line[0]], [2, line[1]]]
+    results
+
+
 
