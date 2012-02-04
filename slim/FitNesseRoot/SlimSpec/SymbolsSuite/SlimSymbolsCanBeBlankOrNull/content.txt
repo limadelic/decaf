@@ -1,0 +1,20 @@
+The values in symbols can be blank or null.
+
+|null fixture|
+|null?       |
+|$NULL=      |
+|null        |
+
+|null fixture|$NULL|
+
+|script|test slim      |
+|check |echo|$NULL|null|
+
+|null fixture|
+|blank?      |
+|$BLANK=     |
+
+|null fixture|$BLANK|
+
+|script|test slim   |
+|check |echo|$BLANK||

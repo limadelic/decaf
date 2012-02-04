@@ -1,4 +1,4 @@
-!|script|Echo|
+!|script|echo fixture|
 |$TEST_SLIM=|echo|TestSlim|
 
 !|script|$TEST_SLIM|
@@ -8,7 +8,7 @@
 |string|string?|
 |Bob|Bob|
 
-!|script|Echo|
+!|script|echo fixture|
 |$QUERY=|echo|Query|
 
 !|Query:Test$QUERY|1|

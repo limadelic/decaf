@@ -1,2 +1,5 @@
 |import|
 |../slim/fixtures/slim_spec|
+
+|library|
+|echo fixture|
