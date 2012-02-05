@@ -1,5 +1,5 @@
 |import|
-|..\slim\fixtures\calculator|
+|${fixtures_path}calculator|
 
 !|script|Calculator|
 |enter|42|

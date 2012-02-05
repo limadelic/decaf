@@ -1,5 +1,5 @@
 |import|
-|../slim/fixtures/slim_spec|
+|${fixtures_path}slim_spec|
 
 |library|
 |echo fixture|

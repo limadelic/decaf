@@ -1,5 +1,5 @@
 |import|
-|../slim/fixtures/calculator|
+|${fixtures_path}calculator|
 
 |script|Calculator|42|
 |check|result|42|
