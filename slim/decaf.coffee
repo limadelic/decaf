@@ -1,1 +1,1 @@
-require '../decaf'
+require '../src/decaf'
