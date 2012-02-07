@@ -1,5 +1,5 @@
 |import|
-|${fixtures_path}calculator|
+|calculator|
 
 !|script|Calculator|
 |enter|42|

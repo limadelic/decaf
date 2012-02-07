@@ -1,5 +1,6 @@
 _ = require 'underscore'
 { SlimHelperLibrary } = require './slim_helper_library'
+{ FixtureLoader } = require './fixture_loader'
 
 class exports.Sut
 
@@ -7,8 +8,9 @@ class exports.Sut
     @modules = []
     @vars = {}
     @libraries = [ new SlimHelperLibrary @ ]
+    @loader = new FixtureLoader()
 
-  require: (@command) -> @modules.push require @command.module()
+  require: (@command) -> @modules.push @loader.require @command.module()
 
   make: (@command) ->
     @command.expand_symbols @vars
