@@ -1,12 +1,11 @@
-|import                 |
-|..\slim\fixtures\oscars|
+|import|
+|oscars|
 
-|do|Oscars|
-
-|The nominees are|
+|Query:The nominees are|
+|Title|
 |The Artist|
 |The Descendants|
-|Extremely Loud & Incredibly Close|
+|Extremely Loud and Incredibly Close|
 |The Help|
 |Hugo|
 |Midnight in Paris|
@@ -14,5 +13,6 @@
 |The Tree of Life|
 |War Horse|
 
-|And the award goes to|
+|Subset Query:And the award goes to|
+|Title|
 |The Tree of Life|
