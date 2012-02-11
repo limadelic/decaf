@@ -2,4 +2,4 @@ class exports.MasterMind
 
   constructor: (@solution) ->
 
-  eval: (turn) -> ['black', 'black', 'black', 'black']
+  rate: (guess) -> ['black', 'black', 'black', 'black']
