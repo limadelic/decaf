@@ -1,0 +1,16 @@
+|import|
+|master_mind|
+
+!*< pegs
+
+!define peg {■}
+!define r (!style_red[${peg}])
+!define b (!style_blue[${peg}])
+!define ok (!style_black[${peg}])
+
+*!
+
+I won in 1!!
+|Table:Game|
+|Solution|${r}|${r}|${b}|${b}|Scores|
+|1|${r}|${r}|${b}|${b}|${ok}|${ok}|${ok}|${ok}|
