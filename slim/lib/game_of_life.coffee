@@ -1,13 +1,9 @@
 class exports.GameOfLife
 
-  constructor: (@cells) ->
-    @size = @cells.length
-
-  evolve: ->
-    for row in [0...@size]
-      for col in [0...@size]
+  evolve: (@cells) ->
+    for row in [0...@cells.length]
+      for col in [0...@cells.length]
         @evolve_at row, col
-
 
   evolve_at: (@row, @col, neighbors = @neighbors()) ->
     next = @cells[@row][@col]

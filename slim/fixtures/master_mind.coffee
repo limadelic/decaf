@@ -9,29 +9,29 @@ class exports.Game
     @board.turns (t) => @play_turn t
 
   play_turn: (t) -> new MasterMind().
-    rate @board.guess(t), @board.solution()
+    score @board.guess(t), @board.solution()
 
-  report: (results) -> new Report().
-    generate @board, results
+  report: (scores) -> new Report().
+    generate @board, scores
 
 class Report
 
-  generate: (@board, @results) ->
+  generate: (@board, @scores) ->
     @report_header.concat @board.turns (t) =>
       @turn_header.concat @generate_turn t
 
   generate_turn: (@turn) ->
-    @generate_result result for result in @expected_turn_results()
+    @generate_score score for score in @expected_turn_scores()
 
-  generate_result: (result) ->
-    i = @turn_results().indexOf result
+  generate_score: (score) ->
+    i = @turn_scores().indexOf score
     if i is -1 then 'fail'
     else
-      @turn_results()[i] = 'matched'
+      @turn_scores()[i] = 'matched'
       'pass'
 
-  expected_turn_results: -> @board.results @turn
-  turn_results: -> @results[@turn - 1]
+  expected_turn_scores: -> @board.scores @turn
+  turn_scores: -> @scores[@turn - 1]
 
   report_header: [['','','','','','']]
   turn_header: ['','','','','']
@@ -43,7 +43,7 @@ class Board
   solution: -> @guess 0
 
   guess: (turn) -> @colors @table[turn][1..4]
-  results: (turn) -> @colors @table[turn][5..]
+  scores: (turn) -> @colors @table[turn][5..]
 
   colors: (cells) -> cell.match(@color)?[1] for cell in cells
   color: /.*class="(.*)".*/

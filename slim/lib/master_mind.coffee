@@ -1,6 +1,6 @@
 class exports.MasterMind
 
-  rate: (@guess, @solution) -> @blacks().concat @whites()
+  score: (@guess, @solution) -> @blacks().concat @whites()
 
   blacks: ->
     for i in [0..3] when @guess[i] is @solution[i]
