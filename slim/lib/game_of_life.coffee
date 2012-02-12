@@ -13,15 +13,17 @@ class exports.GameOfLife
     cell
 
   cell: -> @cells[@row][@col]
-  neighbors: -> new Hood().count @cells, @row, @col
 
-class Hood
+  neighbors: -> new World().
+    neighbors_count @cells, @row, @col
 
-  count: (@cells, @row, @col) -> @neighbors().length
+class World
 
-  is_alive: (x, y) -> @cells[x]?[y] is 'X'
+  neighbors_count: (@cells, @row, @col) -> @neighbors().length
 
   neighbors: -> 'X' for [x, y] in @vicinity() when @is_alive x, y
+
+  is_alive: (x, y) -> @cells[x]?[y] is 'X'
 
   vicinity: ->
     [@row + x, @col + y] for [x, y] in [

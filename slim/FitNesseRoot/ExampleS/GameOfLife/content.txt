@@ -1,5 +1,15 @@
+!img http://upload.wikimedia.org/wikipedia/commons/f/f2/Game_of_life_animated_glider.gif
+
 |import      |
 |game_of_life|
+
+!*< pegs
+
+!define peg {■}
+!define 0 (!style_transparent[${peg}])
+!define X (!style_black[${peg}])
+
+*!
 
 !* Any live cell with fewer than two live neighbours dies, as if caused by under-population
 

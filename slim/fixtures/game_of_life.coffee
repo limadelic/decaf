@@ -15,16 +15,22 @@ class Report
   generate: (@board, @cells) ->
     for row in [0...@board.row_count]
       for col in [0...@board.col_count]
-        if not @is_result col then ''
-        else @assert_cell row, col
+        { @row, @col } = { row, col }
 
-  assert_cell: (row, col) ->
-    col -= @board.size + 1
-    if @cells[row][col] is @board.expected_cells[row][col]
-    then 'pass'
-    else 'fail'
+        if @is_result()
+          if @matches() then 'pass'
+          else 'fail'
+        else ''
 
-  is_result: (col) -> col > @board.size
+  is_result: -> @col > @board.size
+
+  matches: ->
+    @align_column()
+    @expected() is @actual()
+
+  align_column: -> @col -= @board.size + 1
+  expected: -> @board.expected_cells[@row][@col]
+  actual: -> @cells[@row][@col]
 
 class Board
 
