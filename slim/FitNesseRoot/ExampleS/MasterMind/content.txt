@@ -1,4 +1,4 @@
-|import|
+|import     |
 |master_mind|
 
 !*< pegs
@@ -7,17 +7,22 @@
 !define r (!style_red[${peg}])
 !define b (!style_blue[${peg}])
 !define y (!style_yellow[${peg}])
-!define ok (!style_black[${peg}])
+!define g (!style_green[${peg}])
+!define c (!style_cyan[${peg}])
+!define v (!style_violet[${peg}])
+!define black (!style_black[${peg}])
+!define white (!style_white[${peg}])
+!define none (!style_transparent[${peg}])
 
 *!
 
-I won in 1!!
-|Table:Game|
-|Solution|${b}|${b}|${b}|${b}|Scores|
-|1|${b}|${b}|${b}|${b}|${ok}|${ok}|${ok}|${ok}|
+!img-r http://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Mastermind.jpg/565px-Mastermind.jpg
 
-A bit harder
-|Table:Game|
-|Solution|${b}|${b}|${r}|${r}|Scores|
-|1|${b}|${b}|${b}|${b}|${ok}|${ok}|||
-|2|${b}|${b}|${r}|${r}|${ok}|${ok}|${ok}|${ok}|
+|Table:Game                                                      |
+|Solution|${g}|${c}|${r}|${v}|Scores                             |
+|1       |${y}|${y}|${c}|${c}|${white}|${none} |${none} |${none} |
+|2       |${v}|${r}|${r}|${y}|${black}|${white}|${none} |${none} |
+|3       |${g}|${v}|${g}|${y}|${black}|${white}|${none} |${none} |
+|4       |${r}|${r}|${v}|${y}|${white}|${white}|${none} |${none} |
+|5       |${c}|${r}|${g}|${v}|${black}|${white}|${white}|${white}|
+|6       |${g}|${c}|${r}|${v}|${black}|${black}|${black}|${black}|

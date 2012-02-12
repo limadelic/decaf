@@ -397,8 +397,20 @@ span.page_title {
   font-weight: bold;
 }
 
+.cyan {
+  color: cyan;
+}
+
+.transparent {
+  color: transparent;
+}
+
 .red {
   color: red;
+}
+
+.white {
+  color: white;
 }
 
 .orange {
