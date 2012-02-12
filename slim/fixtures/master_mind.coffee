@@ -2,20 +2,16 @@
 
 class exports.Game
 
-  doTable: (table) ->
-    @play_game table
-    @report_results()
+  doTable: (table) -> @report @play table
 
-  play_game: (table) ->
+  play: (table) ->
     @board = new Board table
-    @game = new MasterMind @board.solution()
+    @board.turns (t) => @play_turn t
 
-    @results = @board.turns (t) => @game.rate @board.guess t
+  play_turn: (t) -> new MasterMind().
+    rate @board.guess(t), @board.solution()
 
-  report_header: [['','','','','','']]
-  turn_header: ['','','','','']
-
-  report_results: ->
+  report: (@results) ->
     @report_header.concat @board.turns (t) =>
       @turn_header.concat @report_turn t
 
@@ -30,13 +26,19 @@ class exports.Game
       results[i] = 'matched'
       'pass'
 
+  report_header: [['','','','','','']]
+  turn_header: ['','','','','']
+
+
 class Board
 
   constructor: (@table) ->
 
   solution: -> @guess 0
+
   guess: (turn) -> @colors @table[turn][1..4]
   results: (turn) -> @colors @table[turn][5..]
+
   colors: (cells) -> cell.match(@color)?[1] for cell in cells
   color: /.*class="(.*)".*/
 
