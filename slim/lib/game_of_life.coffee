@@ -3,9 +3,9 @@ class exports.GameOfLife
   evolve: (@cells) ->
     for row in [0...@cells.length]
       for col in [0...@cells.length]
-        { @row, @col } = { row, col }
+        @evolve_at row, col
 
-        @evolve_cell @cell(), @neighbors()
+  evolve_at: (@row, @col) -> @evolve_cell @cell(), @neighbors()
 
   evolve_cell: (cell, neighbors) ->
     cell = '0' unless 1 < neighbors < 4

@@ -15,12 +15,13 @@ class Report
   generate: (@board, @cells) ->
     for row in [0...@board.row_count]
       for col in [0...@board.col_count]
-        { @row, @col } = { row, col }
+        @generate_at row, col
 
-        if @is_result()
-          if @matches() then 'pass'
-          else 'fail'
-        else ''
+  generate_at: (@row, @col) ->
+    if @is_result()
+      if @matches() then 'pass'
+      else 'fail'
+    else ''
 
   is_result: -> @col > @board.size
 
