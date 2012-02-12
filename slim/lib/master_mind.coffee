@@ -3,22 +3,26 @@ class exports.MasterMind
   constructor: (@solution) ->
 
   rate: (@guess) ->
-    @sol = @solution[0..]
+    @copy_solution_and_guess()
     @blacks().concat @whites()
 
   blacks: ->
-    for i in [0..3] when @guess[i] is @sol[i]
-      @delete i, i
+    for i in [0..3] when @guess[i] is @solution[i]
+      @match i
       'black'
 
   whites: ->
-    for i in [0..3] when @guess[i] isnt 'matched'
-      j = @sol.indexOf @guess[i]
+    for i in [0..3] when @guess_copy[i] isnt 'matched'
+      j = @solution_copy.indexOf @guess_copy[i]
       if j is -1 then 'transparent'
       else
-        @delete i, j
+        @match i, j
         'white'
 
-  delete: (i, j) ->
-    @guess[i] = 'matched'
-    @sol[j] = 'matched'
+  match: (i, j = i) ->
+    @guess_copy[i] = 'matched'
+    @solution_copy[j] = 'matched'
+
+  copy_solution_and_guess: ->
+    @solution_copy = @solution[0..]
+    @guess_copy = @guess[0..]
