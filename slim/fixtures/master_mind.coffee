@@ -48,8 +48,8 @@ class Board
   colors: (cells) -> cell.match(@color)?[1] for cell in cells
   color: /.*class="(.*)".*/
 
-  total_of_turns: -> @table.length - 1
-  turns: (action) -> action turn for turn in [1..@total_of_turns()]
+  turns_count: -> @table.length - 1
+  turns: (action) -> action turn for turn in [1..@turns_count()]
 
 
 

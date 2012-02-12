@@ -8,8 +8,7 @@ class exports.Game
     @board = new Board table
     new GameOfLife().evolve @board.cells
 
-  report: (cells) -> new Report().
-    generate @board, cells
+  report: (cells) -> new Report().generate @board, cells
 
 class Report
 
@@ -29,9 +28,9 @@ class Report
 
 class Board
 
-  constructor: (@table) ->
-    @size = Math.floor(@table[0].length / 2)
-    @cells = (row[0...@size] for row in @table)
-    @expected_cells = (row[@size + 1..] for row in @table)
-    @row_count = @table.length
-    @col_count = @table[0].length
+  constructor: (table) ->
+    @size = Math.floor(table[0].length / 2)
+    @cells = (row[0...@size] for row in table)
+    @expected_cells = (row[@size + 1..] for row in table)
+    @row_count = table.length
+    @col_count = table[0].length
