@@ -11,24 +11,30 @@ class exports.Game
   play_turn: (t) -> new MasterMind().
     rate @board.guess(t), @board.solution()
 
-  report: (@results) ->
+  report: (results) -> new Report().
+    generate @board, results
+
+class Report
+
+  generate: (@board, @results) ->
     @report_header.concat @board.turns (t) =>
-      @turn_header.concat @report_turn t
+      @turn_header.concat @generate_turn t
 
-  report_turn: (turn) ->
-    results = @results[turn - 1][0..]
-    @report_result result, results for result in @board.results turn
+  generate_turn: (@turn) ->
+    @generate_result result for result in @expected_turn_results()
 
-  report_result: (result, results) ->
-    i = results.indexOf result
+  generate_result: (result) ->
+    i = @turn_results().indexOf result
     if i is -1 then 'fail'
     else
-      results[i] = 'matched'
+      @turn_results()[i] = 'matched'
       'pass'
+
+  expected_turn_results: -> @board.results @turn
+  turn_results: -> @results[@turn - 1]
 
   report_header: [['','','','','','']]
   turn_header: ['','','','','']
-
 
 class Board
 
