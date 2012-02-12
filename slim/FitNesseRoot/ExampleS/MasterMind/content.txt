@@ -16,7 +16,7 @@
 
 *!
 
-!img-r http://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Mastermind.jpg/565px-Mastermind.jpg
+!img-r https://github.com/limadelic/decaf/raw/master/doc/img/Mastermind.png
 
 |Table:Game                                                      |
 |Solution|${g}|${c}|${r}|${v}|Scores                             |
