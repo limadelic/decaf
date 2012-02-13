@@ -1,0 +1,6 @@
+|import|
+|calculator|
+
+|script|Calculator|
+|check|square|2|4|
+|check|square|4|16|

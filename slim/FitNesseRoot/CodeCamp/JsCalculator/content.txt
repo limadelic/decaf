@@ -1,0 +1,7 @@
+!define COMMAND_PATTERN {decaf-js.cmd %p}
+
+|import|
+|calculator|
+
+|script|Calculator|
+|check|square|2|4|

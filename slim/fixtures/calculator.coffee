@@ -2,6 +2,8 @@ class exports.Calculator
 
   constructor: (n = 0) -> @result = Number n
 
+  square: (x) -> x * x
+
   clear: () -> @result = 0
 
   enter: (n) -> @result = Number n
