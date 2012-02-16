@@ -1,6 +1,11 @@
-exports.Calculator = function() {
+exports.Calculator = (function() {
 
-    this.square = function(x) {
+    function Calculator() {}
+
+    Calculator.prototype.square = function(x) {
         return x * x;
     };
-};
+
+    return Calculator;
+
+})();
