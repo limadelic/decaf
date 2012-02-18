@@ -1,0 +1,28 @@
+|import     |
+|master_mind|
+
+!*< pegs
+
+!define peg {■}
+!define r (!style_red[${peg}])
+!define b (!style_blue[${peg}])
+!define y (!style_yellow[${peg}])
+!define g (!style_green[${peg}])
+!define c (!style_cyan[${peg}])
+!define v (!style_violet[${peg}])
+!define black (!style_black[${peg}])
+!define white (!style_white[${peg}])
+!define none (!style_transparent[${peg}])
+
+*!
+
+!img-r https://github.com/limadelic/decaf/raw/master/doc/img/Mastermind.png
+
+|Table:Game                                                      |
+|Solution|${g}|${c}|${r}|${v}|Scores                             |
+|1       |${y}|${y}|${c}|${c}|${white}|${none} |${none} |${none} |
+|2       |${v}|${r}|${r}|${y}|${black}|${white}|${none} |${none} |
+|3       |${g}|${v}|${g}|${y}|${black}|${white}|${none} |${none} |
+|4       |${r}|${r}|${v}|${y}|${white}|${white}|${none} |${none} |
+|5       |${c}|${r}|${g}|${v}|${black}|${white}|${white}|${white}|
+|6       |${g}|${c}|${r}|${v}|${black}|${black}|${black}|${black}|

@@ -1,0 +1,67 @@
+#!img http://upload.wikimedia.org/wikipedia/commons/f/f2/Game_of_life_animated_glider.gif
+
+|import      |
+|game_of_life|
+
+!*< pegs
+
+!define peg {■}
+!define 0 (!style_transparent[${peg}])
+!define X (!style_black[${peg}])
+
+*!
+
+!* Any live cell with fewer than two live neighbours dies, as if caused by under-population
+
+Lonely cell dies
+|Table:Game    |
+|0|0|0|  |0|0|0|
+|0|X|0|>>|0|0|0|
+|0|0|0|  |0|0|0|
+
+Isolated pair dies
+|Table:Game    |
+|X|0|0|  |0|0|0|
+|0|X|0|>>|0|0|0|
+|0|0|0|  |0|0|0|
+
+*!
+!* Any live cell with two or three live neighbours lives on to the next generation
+
+Survives in cluster
+|Table:Game    |
+|X|X|0|  |X|X|0|
+|X|X|0|>>|X|X|0|
+|0|0|0|  |0|0|0|
+
+Survives as rect angle
+|Table:Game    |
+|X|0|0|  |0|0|0|
+|X|0|0|>>|X|0|0|
+|X|X|X|  |X|X|0|
+
+*!
+!* Any live cell with more than three live neighbours dies, as if by overcrowding
+
+Only the corners survive
+|Table:Game    |
+|X|X|X|  |X|0|X|
+|X|X|X|>>|0|0|0|
+|X|X|X|  |X|0|X|
+
+*!
+!* Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+
+Reproduction from triangle
+|Table:Game    |
+|X|0|X|  |0|0|0|
+|0|0|0|>>|0|X|0|
+|0|X|0|  |0|0|0|
+
+Turning into diamond
+|Table:Game    |
+|X|0|X|  |0|X|0|
+|0|X|0|>>|X|0|X|
+|X|0|X|  |0|X|0|
+
+*!

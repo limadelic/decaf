@@ -1,20 +1,20 @@
 class exports.MasterMind
 
-  score: (@guess, @solution) -> @blacks().concat @whites()
+  score: (@guess, @solution) -> @blacks().concat @rest()
 
   blacks: ->
     for i in [0..3] when @guess[i] is @solution[i]
       @match i
       'black'
 
-  whites: ->
+  rest: ->
     for i in [0..3] when @guess[i] isnt 'matched'
-      j = @solution.indexOf @guess[i]
-      if j is -1 then 'transparent'
-      else
-        @match i, j
+      if @guess[i] in @solution
+        @match i
         'white'
+      else 'transparent'
 
-  match: (i, j = i) ->
-    @guess[i] = 'matched'
-    @solution[j] = 'matched'
+  match: (i) ->
+    guessed = @solution.indexOf @guess[i]
+    @solution[guessed] = 'match'
+    @guess[i] = 'match'
