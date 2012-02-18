@@ -19,6 +19,17 @@
 !img-r https://github.com/limadelic/decaf/raw/master/doc/img/Mastermind.png
 
 |Table:Game                                                      |
+|Solution|${b}|${b}|${b}|${b}|Scores                             |
+|1       |${b}|${b}|${b}|${b}|${black}|${black}|${black}|${black}|
+
+|Table:Game                                                      |
+|Solution|${b}|${b}|${r}|${g}|Scores                             |
+|1       |${b}|${b}|${b}|${b}|${black}|${black}|${none}|${none}|
+|2       |${b}|${b}|${b}|${r}|${black}|${black}|${white}|${none}|
+|3       |${b}|${b}|${g}|${g}|${black}|${black}|${black}|${none}|
+
+
+|Table:Game                                                      |
 |Solution|${g}|${c}|${r}|${v}|Scores                             |
 |1       |${y}|${y}|${c}|${c}|${white}|${none} |${none} |${none} |
 |2       |${v}|${r}|${r}|${y}|${black}|${white}|${none} |${none} |
