@@ -10,7 +10,8 @@ class exports.Sut
     @libraries = [ new SlimHelperLibrary @ ]
     @loader = new FixtureLoader()
 
-  require: (@command) -> @modules.push @loader.require @command.module()
+  require: (@command) ->
+    @modules = [@loader.require @command.module()].concat @modules
 
   make: (@command) ->
     @command.expand_symbols @vars
