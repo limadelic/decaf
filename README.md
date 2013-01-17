@@ -26,4 +26,4 @@ Put these commands in a parent of the Decaf test pages.
     !define TEST_SYSTEM {slim}
     !define COMMAND_PATTERN {decaf.cmd %p}
 
-### [Getting Started](Hello-Decaf)
+### [Getting Started](https://github.com/limadelic/decaf/wiki/Hello-Decaf)
