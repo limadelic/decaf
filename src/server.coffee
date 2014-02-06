@@ -1,5 +1,6 @@
 net = require 'net'
 { Processor } = require './processor'
+{ Buffer } = require './buffer'
 
 class exports.Server
 
@@ -9,17 +10,16 @@ class exports.Server
 
   listen: (@socket) =>
     @processor = new Processor @socket
+    @buffer = new Buffer
     @socket.write @hello
     @socket.on 'data', @message
 
   message: (data) =>
-    command = @command_from data
+    return unless command = @buffer.command_from data
 
     if command is 'bye'
     then @exit()
     else @processor.run command
-
-  command_from: (data) -> data[7..].toString()
 
   exit: ->
     @socket.destroy()
