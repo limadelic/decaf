@@ -1,6 +1,4 @@
-should = require 'should'
 { Sut } = require '../src/sut'
-{ verify, stub } = require './spec_helper'
 { Calculator } = require '../slim/fixtures/calculator'
 { Command } = require '../src/command'
 

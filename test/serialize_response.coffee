@@ -1,4 +1,3 @@
-should = require 'should'
 { serialize } = require '../src/serializer'
 
 describe 'response deserializer', ->

@@ -1,4 +1,3 @@
-should = require 'should'
 { Command } = require '../src/command'
 
 describe 'calling methods', ->

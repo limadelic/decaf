@@ -1,22 +1,37 @@
 {
-    "name" : "decaf",
-    "version" : "0.1.2",
-    "description" : "Slim runner in CoffeeScript",
-    "homepage" : "https://github.com/limadelic/decaf",
-    "repository" : { "type" : "git", "url" : "https://github.com/limadelic/decaf.git" },
-    "keywords" : ["testing", "atdd", "bdd"],
-    "author" : "limadelic <limadelic@gmail.com>",
-    "contributors" : [
-        "Isel Fernandez <isel_77@hotmail.com",
-        "Mike Suarez <mikemps@gmail.com"
-    ],
-    "licenses" : ["MIT"],
-    "dependencies" : {
-        "underscore" : "latest"
-    },
-    "main" : "./lib/decaf",
-    "bin" : {
-        "decaf" : "./bin/decaf",
-        "decaf-js" : "./bin/decaf-js"
-    }
+  "name": "decaf",
+  "version": "0.1.2",
+  "description": "Slim runner in CoffeeScript",
+  "homepage": "https://github.com/limadelic/decaf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/limadelic/decaf.git"
+  },
+  "keywords": ["testing", "atdd", "bdd"],
+  "author": "limadelic <limadelic@gmail.com>",
+  "contributors": [
+    "Isel Fernandez <isel_77@hotmail.com",
+    "Mike Suarez <mikemps@gmail.com"
+  ],
+  "licenses": ["MIT"],
+  "dependencies": {
+    "coffee-script": "latest",
+    "underscore": "latest"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "nodemon": "latest",
+    "sinon": "latest",
+    "should": "latest"
+  },
+  "main": "./lib/decaf",
+  "bin": {
+    "decaf": "./bin/decaf",
+    "decaf-js": "./bin/decaf-js"
+  },
+  "scripts": {
+    "posttest": "coffee -cl -o lib src",
+    "test": "nodemon -w src -w test node_modules/mocha/bin/mocha",
+    "start": "slim/startFitnesse"
+  }
 }

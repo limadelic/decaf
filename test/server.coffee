@@ -1,5 +1,4 @@
 net = require 'net'
-{ stub, verify, spy } = require './spec_helper'
 { Server } = require '../src/server'
 
 describe 'decaf server', ->

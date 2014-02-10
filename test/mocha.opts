@@ -1,0 +1,6 @@
+--compilers coffee:coffee-script/register
+--require should
+--require test/test_helper.coffee
+--reporter spec
+--globals sut,game
+-t 130000
