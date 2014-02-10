@@ -1,6 +1,6 @@
 net = require 'net'
 { Processor } = require './processor'
-{ Buffer } = require './buffer'
+{ SlimChunkBuffer } = require './slim_chunk_buffer'
 
 class exports.Server
 
@@ -10,7 +10,7 @@ class exports.Server
 
   listen: (@socket) =>
     @processor = new Processor @socket
-    @buffer = new Buffer
+    @buffer = new SlimChunkBuffer
     @socket.write @hello
     @socket.on 'data', @message
 

@@ -1,5 +1,5 @@
 net = require 'net'
-{ stub, verify } = require './spec_helper'
+{ stub, verify, spy } = require './spec_helper'
 { Server } = require '../src/server'
 
 describe 'decaf server', ->
@@ -37,8 +37,6 @@ describe 'decaf server', ->
 
     sut.processor = stub run: (command) ->
 
-    sut.message '000015:[slim command]'
+    sut.message new Buffer('000014:[slim command]')
 
     verify sut.processor.run.calledWith '[slim command]'
-
-
