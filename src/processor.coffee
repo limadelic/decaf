@@ -13,7 +13,7 @@ class exports.Processor
 
     @process new Command command for command in deserialize commands
 
-    @socket.write serialize @response
+    @socket.write new Buffer(serialize @response)
 
   process: (@command) ->
     try @reply do @[@command.operation()]

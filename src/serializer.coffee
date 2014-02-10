@@ -32,25 +32,35 @@ class Deserializer
 #========= Serialize
 
 exports.serialize = serialize = (response) ->
-  result = new Serializer().serialize response
-  length(result) + ':' + result
+  serializer = new Serializer()
+  content = serializer.serialize response
+  formatted_length(serializer.total_length) + ':' + content
 
 class Serializer
-
+  
+  constructor: ->
+    @total_length = 0
+      
   serialize: (items) ->
-    '[' + length(items) + ':' + @list(items) + ']'
+    console.log JSON.stringify items
+    @total_length += 9 # is always [######:<content>] = 1 bracket + 6 times number + colon + bracket  
+    content = '[' + formatted_length(items.length) + ':' + @list(items) + ']'
 
   list: (items) -> string (@item item for item in items)
 
   item: (item) ->
-    item = @serialize item if _.isArray item
+    is_item_array = _.isArray item
+    item = @serialize item if is_item_array
     item = 'null' if item in [null, undefined]
     item = item.toString()
+    length = Buffer.byteLength(item, 'utf-8')
+    @total_length += (if is_item_array then 0 else length ) + 2 + 6
+    console.log "T:" + @total_length + ", " + item
+    formatted_length(length) + ':' + item + ':'
+    
 
-    length(item) + ':' + item + ':'
-
-length = (item) ->
-  len = item.length.toString()
+formatted_length = (length) ->
+  len = length.toString()
   zeroes = string (0 for [1..6 - len.length])
   zeroes + len
 
