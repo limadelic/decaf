@@ -32,6 +32,6 @@
   "scripts": {
     "posttest": "coffee -cl -o lib src",
     "test": "nodemon -w src -w test node_modules/mocha/bin/mocha",
-    "start": "slim/startFitnesse"
+    "start": "startFitnesse"
   }
 }
