@@ -34,7 +34,3 @@ describe 'response deserializer', ->
     verify [null], '000021:[000001:000004:null:]'
     verify [undefined], '000021:[000001:000004:null:]'
     verify [''], '000017:[000001:000000::]'
-    
-  it 'should serialize umlaute', ->
-
-    verify ['ä'], '000019:[000001:000002:ä:]'   
