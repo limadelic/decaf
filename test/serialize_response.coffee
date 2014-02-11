@@ -34,3 +34,9 @@ describe 'response deserializer', ->
     verify [null], '000021:[000001:000004:null:]'
     verify [undefined], '000021:[000001:000004:null:]'
     verify [''], '000017:[000001:000000::]'
+
+  it 'should serialize umlaute', ->
+    # the outermost length contains the number of bytes
+    # of the string encoded as utf-8.
+    # the other refer to the number of items or characters
+    verify ['ä'], '000019:[000001:000001:ä:]'   
