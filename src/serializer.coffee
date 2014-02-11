@@ -33,12 +33,12 @@ class Deserializer
 
 exports.serialize = serialize = (response) ->
   result = new Serializer().serialize response
-  length(result) + ':' + result
+  formatted_length(Buffer.byteLength(result, 'utf-8')) + ':' + result
 
 class Serializer
 
   serialize: (items) ->
-    '[' + length(items) + ':' + @list(items) + ']'
+    '[' + formatted_length(items.length) + ':' + @list(items) + ']'
 
   list: (items) -> string (@item item for item in items)
 
@@ -47,10 +47,10 @@ class Serializer
     item = 'null' if item in [null, undefined]
     item = item.toString()
 
-    length(item) + ':' + item + ':'
+    formatted_length(item.length) + ':' + item + ':'
 
-length = (item) ->
-  len = item.length.toString()
+formatted_length = (item) ->
+  len = item.toString()
   zeroes = string (0 for [1..6 - len.length])
   zeroes + len
 
