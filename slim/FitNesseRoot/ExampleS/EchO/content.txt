@@ -1,8 +1,8 @@
 |import|
 |echo  |
 
-|script|Echo |
-|echo  |echöe|
+|script|Echo|
+|check|echo  |echö|echö|
 
 |script|Echo          |
 |check |echo|echo|echo|

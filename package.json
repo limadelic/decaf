@@ -1,6 +1,6 @@
 {
   "name": "decaf",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Slim runner in CoffeeScript",
   "homepage": "https://github.com/limadelic/decaf",
   "repository": {
@@ -30,8 +30,9 @@
     "decaf-js": "./bin/decaf-js"
   },
   "scripts": {
-    "posttest": "coffee -cl -o lib src",
-    "test": "nodemon -w src -w test node_modules/mocha/bin/mocha",
+    "posttest": "coffee -c -o lib src",
+    "test": "mocha",
+    "auto-test": "nodemon -w src -w test node_modules/mocha/bin/mocha",
     "start": "startFitnesse"
   }
 }

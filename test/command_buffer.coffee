@@ -1,4 +1,3 @@
-net = require 'net'
 { CommandBuffer } = require '../src/command_buffer'
 
 describe 'Command buffering', ->
@@ -16,10 +15,8 @@ describe 'Command buffering', ->
     process  [0xc3, 0xa4] # ä
     .should.equal new Buffer([0xc3, 0xa4, 0xc3, 0xa4]).toString() # ää
 
-
   it 'should throw an exception if it received too much data', ->
     e = undefined
     try process '000001:aa'
     catch e
     e.should.equal 'invalid command'
-    
