@@ -1,6 +1,6 @@
 {
   "name": "decaf",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Slim runner in CoffeeScript",
   "homepage": "https://github.com/limadelic/decaf",
   "repository": {

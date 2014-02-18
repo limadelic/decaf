@@ -1,6 +1,6 @@
 !define TEST_SYSTEM {slim}
-!define COMMAND_PATTERN {decaf.cmd %p}
 !define COMMAND_PATTERN {coffee.cmd decaf.coffee %p}
+!define COMMAND_PATTERN {decaf.cmd %p}
 !path fixtures
 
 !include FrontPage
