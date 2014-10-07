@@ -9,6 +9,7 @@ class exports.FixtureLoader
   require: (module) ->
     currdir = process.cwd()
     for path in @path
+      try return require path + '/' + module catch e
       try return require currdir + '/' + path + '/' + module catch e
     throw 'Cannot find ' + module
 
