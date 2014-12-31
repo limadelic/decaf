@@ -10,8 +10,8 @@
   "keywords": ["testing", "atdd", "bdd"],
   "author": "limadelic <limadelic@gmail.com>",
   "contributors": [
-    "Isel Fernandez <isel_77@hotmail.com",
-    "Mike Suarez <mikemps@gmail.com"
+    "Isel Fernandez <isel_77@hotmail.com>",
+    "Mike Suarez <mikemps@gmail.com>"
   ],
   "licenses": ["MIT"],
   "dependencies": {

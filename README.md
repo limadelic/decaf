@@ -24,6 +24,6 @@ you to write test fixtures in CoffeeScript or JavaScript, and invoke them from a
 Put these commands in a parent of the Decaf test pages.
 
     !define TEST_SYSTEM {slim}
-    !define COMMAND_PATTERN {decaf.cmd %p}
+    !define COMMAND_PATTERN {decaf %p}
 
 ### [Getting Started](https://github.com/limadelic/decaf/wiki/Hello-Decaf)
