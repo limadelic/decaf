@@ -23,6 +23,10 @@ describe 'command deserializer', ->
 
      verify '[000001:000005:hello:]', ['hello']
 
+  it 'should deserialize empty element', ->
+
+     verify '[000001:000000::]', ['']
+
   it 'should deserialize multiple elements', ->
 
     verify '[000002:000004:good:000003:bye:]', ['good', 'bye']
