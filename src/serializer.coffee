@@ -21,7 +21,7 @@ class Deserializer
   token: (length) ->
     result = @command[0..length - 1]
     @command = @command[length + 1..]
-    result
+    length and result or ''
 
   is_deserializable: ->
     @command?.length > 1 and
