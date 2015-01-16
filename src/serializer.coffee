@@ -19,9 +19,8 @@ class Deserializer
   length: -> parseInt @token(6), 10
 
   token: (length) ->
-    result = @command[0..length - 1]
-    @command = @command[length + 1..]
-    length and result or ''
+    try length and @command[0..length - 1] or ''
+    finally @command = @command[length + 1..]
 
   is_deserializable: ->
     @command?.length > 1 and
